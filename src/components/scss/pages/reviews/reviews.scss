@@ -1,0 +1,154 @@
+@keyframes star-pop {
+  0%   { transform: scale(1); }
+  45%  { transform: scale(1.45) rotate(-10deg); }
+  100% { transform: scale(1) rotate(0); }
+}
+
+@keyframes hint-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+// =========================
+// ВЫБОР ОЦЕНКИ
+// =========================
+
+.rate {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 22px 24px;
+
+  background:
+          radial-gradient(circle at 0% 50%, rgba(168, 85, 247, 0.16), transparent 60%),
+          rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(165, 180, 252, 0.18);
+  border-radius: 22px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+  // Звёзды в обратном порядке: так выделяется всё слева от выбранной
+  &__stars {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 6px;
+
+    input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    label {
+      color: rgba(165, 180, 252, 0.25);
+      font-size: 46px;
+      line-height: 1;
+      cursor: pointer;
+      user-select: none;
+
+      transition:
+              color 0.25s ease,
+              text-shadow 0.3s ease,
+              transform 0.35s cubic-bezier(0.34, 1.5, 0.64, 1);
+
+      &:hover {
+        transform: scale(1.18) rotate(-6deg);
+      }
+
+      &:active {
+        transform: scale(0.9);
+      }
+    }
+
+    // Выбранная звезда и все слева от неё
+    input:checked ~ label {
+      color: #fcd34d;
+      text-shadow: 0 0 16px rgba(252, 211, 77, 0.85), 0 0 30px rgba(245, 158, 11, 0.5);
+    }
+
+    input:checked + label {
+      animation: star-pop 0.5s cubic-bezier(0.34, 1.5, 0.64, 1);
+    }
+
+    // Подсветка при наведении
+    &:hover label {
+      color: #fcd34d;
+      text-shadow: 0 0 16px rgba(252, 211, 77, 0.85);
+    }
+
+    label:hover ~ label {
+      color: #fcd34d;
+      text-shadow: 0 0 16px rgba(252, 211, 77, 0.85);
+    }
+
+    // Звёзды справа от наведённой возвращаются в серый
+    label:hover + input + label,
+    input:focus-visible + label {
+      outline: none;
+    }
+
+    input:focus-visible + label {
+      text-shadow: 0 0 0 transparent, 0 0 0 2px #c084fc;
+      border-radius: 8px;
+    }
+  }
+
+  // Подсказки под звёздами
+  &__hints {
+    min-height: 22px;
+  }
+
+  &__hint {
+    display: none;
+
+    color: #e9d5ff;
+    font-size: 14px;
+    font-weight: 700;
+    text-shadow: 0 0 12px rgba(192, 132, 252, 0.7);
+
+    animation: hint-in 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+
+    &--empty {
+      color: #7a83bb;
+      font-weight: 600;
+      text-shadow: none;
+    }
+  }
+
+  // Показываем нужную подсказку
+  &:not(:has(input:checked)) &__hint--empty,
+  &:has(#rate-5:checked) &__hint--5,
+  &:has(#rate-4:checked) &__hint--4,
+  &:has(#rate-3:checked) &__hint--3,
+  &:has(#rate-2:checked) &__hint--2,
+  &:has(#rate-1:checked) &__hint--1 {
+    display: block;
+  }
+}
+
+// =========================
+// ОТСТУПЫ
+// =========================
+
+.review-tags {
+  margin-top: 22px;
+}
+
+.review-agree {
+  margin-top: 22px;
+  margin-bottom: 20px;
+}
+
+// =========================
+// АДАПТИВ
+// =========================
+
+@media (max-width: 480px) {
+  .rate {
+    padding: 18px 16px;
+
+    &__stars label {
+      font-size: 38px;
+    }
+  }
+}

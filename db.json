@@ -1,0 +1,544 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "rating": "5",
+      "title": "Отличный результат",
+      "text": "Работа выполнена качественно, интерфейсы получились аккуратными. Результатом доволен.",
+      "adTitle": "Веб-дизайнер для разработки интерфейсов",
+      "userpostid": "5",
+      "tags": [
+        "quality",
+        "fast"
+      ],
+      "recommend": true,
+      "anonymous": true,
+      "name": null,
+      "lastName": null,
+      "userId": "6",
+      "agree": true,
+      "id": 5
+    },
+    {
+      "rating": "4",
+      "title": "Всё хорошо",
+      "text": "Работа выполнена в срок, договорённости соблюдались. Сотрудничеством доволен.",
+      "adTitle": "Менеджер по продажам",
+      "userpostid": "5",
+      "tags": [
+        "talk",
+        "quality"
+      ],
+      "recommend": true,
+      "anonymous": true,
+      "name": null,
+      "lastName": null,
+      "userId": "8",
+      "agree": true,
+      "id": 6
+    },
+    {
+      "rating": "5",
+      "title": "Хорошее сотрудничество",
+      "text": "Задача выполнена без лишних вопросов. Всё устроило, могу рекомендовать.",
+      "adTitle": "Контент-менеджер сайта",
+      "userpostid": "5",
+      "tags": [
+        "quality",
+        "fast"
+      ],
+      "recommend": true,
+      "anonymous": true,
+      "name": null,
+      "lastName": null,
+      "userId": "9",
+      "agree": true,
+      "id": 7
+    },
+    {
+      "rating": "4",
+      "title": "Хорошая работа",
+      "text": "Результат соответствует ожиданиям. Взаимодействие было комфортным.",
+      "adTitle": "Графический дизайнер",
+      "userpostid": "5",
+      "tags": [
+        "quality",
+        "talk"
+      ],
+      "recommend": true,
+      "anonymous": true,
+      "name": null,
+      "lastName": null,
+      "userId": "10",
+      "agree": true,
+      "id": 8
+    },
+    {
+      "rating": "5",
+      "title": "Всё отлично",
+      "text": "Общение прошло хорошо, вопросы решались быстро. Спасибо за сотрудничество.",
+      "adTitle": "Оператор службы поддержки",
+      "userpostid": "5",
+      "tags": [
+        "talk",
+        "fast"
+      ],
+      "recommend": true,
+      "anonymous": true,
+      "name": null,
+      "lastName": null,
+      "userId": "7",
+      "agree": true,
+      "id": 9
+    },
+    {
+      "rating": "5",
+      "title": "Всё выполнено",
+      "text": "Задача была простой, результатом доволен. Всё прошло без проблем.",
+      "adTitle": "вынести мусор",
+      "userpostid": "5",
+      "tags": [
+        "fast",
+        "quality"
+      ],
+      "recommend": true,
+      "anonymous": false,
+      "name": "Эдем",
+      "lastName": "Кузнецов",
+      "userId": "5",
+      "agree": true,
+      "id": 10
+    },
+    {
+      "rating": "4",
+      "title": "Хорошо",
+      "text": "Покупка выполнена, всё прошло нормально. Спасибо за помощь.",
+      "adTitle": "Купить хлеб",
+      "userpostid": "5",
+      "tags": [
+        "fast"
+      ],
+      "recommend": true,
+      "anonymous": true,
+      "name": null,
+      "lastName": null,
+      "userId": "5",
+      "agree": true,
+      "id": 11
+    },
+    {
+      "rating": "5",
+      "title": "Проблема решена",
+      "text": "С подключением разобрались, интернет снова работает. Результат отличный.",
+      "adTitle": "Починить вай фай",
+      "userpostid": "5",
+      "tags": [
+        "quality",
+        "talk"
+      ],
+      "recommend": true,
+      "anonymous": false,
+      "name": "Эдем",
+      "lastName": "Кузнецов",
+      "userId": "5",
+      "agree": true,
+      "id": 12
+    },
+    {
+      "rating": "4",
+      "title": "Всё прошло хорошо",
+      "text": "Посылку доставили, задача выполнена. В целом сотрудничеством доволен.",
+      "adTitle": "Отвезти посылку",
+      "userpostid": "5",
+      "tags": [
+        "fast",
+        "talk"
+      ],
+      "recommend": true,
+      "anonymous": true,
+      "name": null,
+      "lastName": null,
+      "userId": "5",
+      "agree": true,
+      "id": 13
+    },
+    {
+      "rating": "5",
+      "title": "Отлично",
+      "text": "Всё необходимое купили, задача выполнена. Спасибо за оперативность.",
+      "adTitle": "Купить продукты",
+      "userpostid": "5",
+      "tags": [
+        "fast",
+        "quality"
+      ],
+      "recommend": true,
+      "anonymous": false,
+      "name": "Эдем",
+      "lastName": "Кузнецов",
+      "userId": "5",
+      "agree": true,
+      "id": 14
+    },
+    {
+      "rating": "1",
+      "title": "Недоволен",
+      "text": "всё ужасно",
+      "adTitle": "Веб-дизайнер для разработки интерфейсов",
+      "userpostid": "5",
+      "tags": [],
+      "recommend": true,
+      "anonymous": false,
+      "name": "Эдем",
+      "lastName": "Кузнецов",
+      "userId": "6",
+      "agree": true,
+      "id": 15
+    }
+  ],
+  "users": [
+    {
+      "email": "test@example.com",
+      "password": "$2a$10$/5Mn146m0eVpAkyWrwyJKeKrx9CFveIRV2oUOgRJJS1gkbvM1INAS",
+      "id": 1
+    },
+    {
+      "email": "kuznetsovedem@gmail.com",
+      "password": "$2a$10$8DpmzoE/dZkoP4AgJ/hmYeKqo7FkwOy5OxCxo9Jsnv.Y2CHDDyjwK",
+      "id": 2
+    },
+    {
+      "email": "kuznetsoved1em@gmail.com",
+      "password": "$2a$10$rgSxUm69oW3YGmJbkaveR.NZb.H2rpZAJRKsJrdNOppduBFFtidVq",
+      "id": 3
+    },
+    {
+      "email": "kuznetsovem@gmail.com",
+      "password": "$2a$10$cDR/3o9Webgrfvl3Lm/VoulVGUHeEa7w90o97jz3XIu1expiTvx4q",
+      "id": 4
+    },
+    {
+      "email": "kuznetsovem@gmail.com1",
+      "password": "$2a$10$TaR7X42tpd4NrVhdg1JrJu/fr3/yb36c3dkfMBfLdCVAIAZd5aChi",
+      "id": 5
+    },
+    {
+      "email": "alina@example.com",
+      "password": "$2a$10$8DpmzoE/dZkoP4AgJ/hmYeKqo7FkwOy5OxCxo9Jsnv.Y2CHDDyjwK",
+      "id": 6
+    },
+    {
+      "email": "dilshod@example.com",
+      "password": "$2a$10$8DpmzoE/dZkoP4AgJ/hmYeKqo7FkwOy5OxCxo9Jsnv.Y2CHDDyjwK",
+      "id": 7
+    },
+    {
+      "email": "madina@example.com",
+      "password": "$2a$10$8DpmzoE/dZkoP4AgJ/hmYeKqo7FkwOy5OxCxo9Jsnv.Y2CHDDyjwK",
+      "id": 8
+    },
+    {
+      "email": "sardor@example.com",
+      "password": "$2a$10$8DpmzoE/dZkoP4AgJ/hmYeKqo7FkwOy5OxCxo9Jsnv.Y2CHDDyjwK",
+      "id": 9
+    },
+    {
+      "email": "nilufar@example.com",
+      "password": "$2a$10$8DpmzoE/dZkoP4AgJ/hmYeKqo7FkwOy5OxCxo9Jsnv.Y2CHDDyjwK",
+      "id": 10
+    }
+  ],
+  "profiles": [
+    {
+      "id": "5",
+      "userId": "5",
+      "firstName": "Эдем",
+      "lastName": "Кузнецов",
+      "birth": "2001-07-31",
+      "city": "Фергана",
+      "gender": "male",
+      "phone": "+998905605363",
+      "telegram": "@kuznetsov",
+      "sphere": "it",
+      "about": "",
+      "notifyEmail": true,
+      "notifyNews": false,
+      "email": "kuznetsovem@gmail.com"
+    },
+    {
+      "id": "6",
+      "userId": "6",
+      "firstName": "Алина",
+      "lastName": "Каримова",
+      "birth": "",
+      "city": "Ташкент",
+      "gender": "female",
+      "phone": "+998901234567",
+      "telegram": "@alina_karimova",
+      "sphere": "design",
+      "about": "Веб-дизайнер и специалист по UX/UI. Ищу профессионалов для совместной работы над цифровыми продуктами.",
+      "notifyEmail": true,
+      "notifyNews": false,
+      "email": "alina@example.com"
+    },
+    {
+      "id": "7",
+      "userId": "7",
+      "firstName": "Дилшод",
+      "lastName": "Рахимов",
+      "birth": "",
+      "city": "Ташкент",
+      "gender": "male",
+      "phone": "+998911234567",
+      "telegram": "@dilshod_rahimov",
+      "sphere": "it",
+      "about": "Развиваю веб-проекты и цифровые сервисы. Ищу разработчиков и специалистов технических направлений.",
+      "notifyEmail": true,
+      "notifyNews": false,
+      "email": "dilshod@example.com"
+    },
+    {
+      "id": "8",
+      "userId": "8",
+      "firstName": "Мадина",
+      "lastName": "Юсупова",
+      "birth": "",
+      "city": "Самарканд",
+      "gender": "female",
+      "phone": "+998931234567",
+      "telegram": "@madina_yusupova",
+      "sphere": "sales",
+      "about": "Работаю в сфере продаж и клиентского сервиса. Ищу ответственных сотрудников для долгосрочного сотрудничества.",
+      "notifyEmail": true,
+      "notifyNews": false,
+      "email": "madina@example.com"
+    },
+    {
+      "id": "9",
+      "userId": "9",
+      "firstName": "Сардор",
+      "lastName": "Алиев",
+      "birth": "",
+      "city": "Ташкент",
+      "gender": "male",
+      "phone": "+998941234567",
+      "telegram": "@sardor_aliev",
+      "sphere": "marketing",
+      "about": "Занимаюсь развитием сайтов, контентом и интернет-маркетингом. Ищу специалистов для работы над проектами.",
+      "notifyEmail": true,
+      "notifyNews": false,
+      "email": "sardor@example.com"
+    },
+    {
+      "id": "10",
+      "userId": "10",
+      "firstName": "Нилуфар",
+      "lastName": "Саидова",
+      "birth": "",
+      "city": "Бухара",
+      "gender": "female",
+      "phone": "+998951234567",
+      "telegram": "@nilufar_saidova",
+      "sphere": "design",
+      "about": "Работаю с графическим дизайном и визуальными коммуникациями. Ищу дизайнеров и творческих специалистов для проектной работы.",
+      "notifyEmail": true,
+      "notifyNews": false,
+      "email": "nilufar@example.com"
+    }
+  ],
+  "ads": [
+    {
+      "id": "1",
+      "userId": "6",
+      "title": "Веб-дизайнер для разработки интерфейсов",
+      "category": "design",
+      "city": "Ташкент",
+      "employment": "full",
+      "description": "Ищем веб-дизайнера для работы над интерфейсами сайтов и веб-приложений. Необходимо создавать макеты в Figma, разрабатывать дизайн-системы и адаптировать интерфейсы для мобильных устройств. Важны внимание к деталям и понимание UX/UI.",
+      "salary_from": 8000000,
+      "salary_to": 14000000,
+      "urgent": true,
+      "date": "2026-10-22",
+      "contact_name": "Алина Каримова",
+      "phone": "+998901234567",
+      "email": "alina@example.com",
+      "agree": true
+    },
+    {
+      "id": "2",
+      "userId": "7",
+      "title": "Frontend-разработчик React",
+      "category": "it",
+      "city": "Ташкент",
+      "employment": "remote",
+      "description": "В команду разработки требуется frontend-разработчик. Работа с React, JavaScript, REST API и адаптивной вёрсткой. Нужно разрабатывать новые компоненты, исправлять ошибки и участвовать в улучшении пользовательского интерфейса. Приветствуется знание Git.",
+      "salary_from": 12000000,
+      "salary_to": 20000000,
+      "urgent": false,
+      "date": "2026-10-23",
+      "contact_name": "Дилшод Рахимов",
+      "phone": "+998911234567",
+      "email": "dilshod@example.com",
+      "agree": true
+    },
+    {
+      "id": "3",
+      "userId": "8",
+      "title": "Менеджер по продажам",
+      "category": "sales",
+      "city": "Самарканд",
+      "employment": "full",
+      "description": "Ищем менеджера по продажам для работы с входящими заявками и действующими клиентами. В обязанности входят консультации, подготовка коммерческих предложений, ведение CRM и сопровождение сделок. Опыт продаж будет преимуществом.",
+      "salary_from": 6000000,
+      "salary_to": 12000000,
+      "urgent": false,
+      "date": "2026-10-21",
+      "contact_name": "Мадина Юсупова",
+      "phone": "+998931234567",
+      "email": "madina@example.com",
+      "agree": true
+    },
+    {
+      "id": "4",
+      "userId": "9",
+      "title": "Контент-менеджер сайта",
+      "category": "marketing",
+      "city": "Ташкент",
+      "employment": "part",
+      "description": "Нужен контент-менеджер для наполнения сайта товарами и информационными материалами. Работа включает публикацию текстов и изображений, проверку ссылок, оформление страниц и базовую SEO-оптимизацию. Важно уверенно пользоваться админ-панелями сайтов.",
+      "salary_from": 4000000,
+      "salary_to": 7000000,
+      "urgent": false,
+      "date": "2026-10-22",
+      "contact_name": "Сардор Алиев",
+      "phone": "+998941234567",
+      "email": "sardor@example.com",
+      "agree": true
+    },
+    {
+      "id": "5",
+      "userId": "10",
+      "title": "Графический дизайнер",
+      "category": "design",
+      "city": "Бухара",
+      "employment": "project",
+      "description": "Ищем графического дизайнера для проектной работы. Необходимо создавать баннеры, рекламные макеты, визуалы для социальных сетей и презентационные материалы. Нужны навыки работы в Figma или Adobe Photoshop и умение соблюдать фирменный стиль.",
+      "salary_from": 3000000,
+      "salary_to": 8000000,
+      "urgent": false,
+      "date": "2026-10-22",
+      "contact_name": "Нилуфар Саидова",
+      "phone": "+998951234567",
+      "email": "nilufar@example.com",
+      "agree": true
+    },
+    {
+      "id": "6",
+      "userId": "7",
+      "title": "Оператор службы поддержки",
+      "category": "support",
+      "city": "Ташкент",
+      "employment": "remote",
+      "description": "Требуется оператор службы поддержки для обработки обращений клиентов в чате и по электронной почте. Нужно помогать пользователям решать типовые вопросы, фиксировать обращения и передавать сложные случаи профильным специалистам. Предусмотрено обучение.",
+      "salary_from": 5000000,
+      "salary_to": 8000000,
+      "urgent": true,
+      "date": "2026-10-25",
+      "contact_name": "Дилшод Рахимов",
+      "phone": "+998911234567",
+      "email": "dilshod@example.com",
+      "agree": true
+    },
+    {
+      "id": "aheCNMj",
+      "userId": "5",
+      "title": "вынести мусор",
+      "category": "other",
+      "city": "Фергана",
+      "employment": "part",
+      "description": "нужно вынести",
+      "salary_from": "10000",
+      "salary_to": "15000",
+      "urgent": true,
+      "date": "2026-10-26",
+      "contact_name": "Кузнецов Эдем",
+      "phone": "+998905605363",
+      "email": "kuznetsovedem@gmail.com",
+      "agree": true
+    },
+    {
+      "id": "CwdRR6j",
+      "userId": "5",
+      "title": "Купить хлеб",
+      "category": "other",
+      "city": "Фергана",
+      "employment": "part",
+      "description": "нужно срочно",
+      "salary_from": "20000",
+      "salary_to": "25000",
+      "urgent": true,
+      "date": "2026-10-10",
+      "contact_name": "Кузнецов Эдем",
+      "phone": "+998905605363",
+      "email": "kuznetsovedem@gmail.com",
+      "agree": true
+    },
+    {
+      "id": "KuYWtDs",
+      "userId": "5",
+      "title": "Починить вай фай",
+      "category": "other",
+      "city": "Ташкент",
+      "employment": "remote",
+      "description": "надо починить вай фай",
+      "salary_from": "40000",
+      "salary_to": "100000",
+      "urgent": false,
+      "date": "2026-10-27",
+      "contact_name": "Кузнецов Эдем",
+      "phone": "+998905605363",
+      "email": "kuznetsovedem@gmail.com",
+      "agree": true
+    },
+    {
+      "id": "9cbX2Wk",
+      "userId": "5",
+      "title": "Отвезти посылку",
+      "category": "sales",
+      "city": "Фергана",
+      "employment": "part",
+      "description": "отвезти",
+      "salary_from": "100000",
+      "salary_to": "500000",
+      "urgent": true,
+      "date": "2026-10-24",
+      "contact_name": "Кузнецов Эдем",
+      "phone": "+998905605363",
+      "email": "kuznetsovedem@gmail.com",
+      "agree": true
+    },
+    {
+      "id": "N1_ZekA",
+      "userId": "5",
+      "title": "Купить продукты",
+      "category": "other",
+      "city": "Фергана",
+      "employment": "part",
+      "description": "купить хлеб масло",
+      "salary_from": "10000",
+      "salary_to": "20000",
+      "urgent": true,
+      "date": "2026-10-30",
+      "contact_name": "Кузнецов Эдем",
+      "phone": "+998905605363",
+      "email": "kuznetsovedem@gmail.com",
+      "agree": true
+    }
+  ]
+}

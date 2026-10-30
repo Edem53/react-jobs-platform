@@ -1,0 +1,454 @@
+@keyframes footer-line {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+@keyframes orb-float {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.55; }
+  50%      { transform: translate(-30px, 18px) scale(1.15); opacity: 0.85; }
+}
+
+.footer {
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  position: relative;
+  width: 100%;
+  margin-top: 48px;
+  padding: 44px 48px 26px;
+  overflow: hidden;
+  isolation: isolate;
+
+  color: #cbd5e1;
+  font-family: Inter, "Segoe UI", sans-serif;
+
+  border-radius: 28px;
+
+  // Тот же живой фон, что и в шапке
+  background:
+          radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.38), transparent 45%),
+          radial-gradient(circle at 80% 50%, rgba(168, 85, 247, 0.32), transparent 45%),
+          radial-gradient(circle at 50% 100%, rgba(56, 189, 248, 0.22), transparent 50%),
+          linear-gradient(120deg, #0b1020, #131733 50%, #0e1228);
+  background-size: 160% 160%, 160% 160%, 160% 160%, 100% 100%;
+
+  box-shadow:
+          0 -10px 50px rgba(99, 102, 241, 0.12),
+          0 25px 60px rgba(15, 18, 50, 0.45),
+          inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+  animation:
+          form-rise 0.9s var(--ease) both,
+          aurora 14s ease-in-out infinite;
+
+  // Вращающаяся неоновая рамка
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    padding: 1.5px;
+    border-radius: inherit;
+    pointer-events: none;
+
+    background: conic-gradient(
+            from var(--angle),
+            rgba(99, 102, 241, 0.05),
+            rgba(56, 189, 248, 0.9),
+            rgba(168, 85, 247, 0.9),
+            rgba(99, 102, 241, 0.05) 60%
+    );
+    animation: border-spin 8s linear infinite;
+
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  }
+
+  // Бегущая неоновая линия сверху
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 6%;
+    z-index: 2;
+    width: 88%;
+    height: 2px;
+    pointer-events: none;
+
+    background: linear-gradient(
+            90deg,
+            transparent,
+            #38bdf8,
+            #a855f7,
+            #ec4899,
+            transparent,
+            #38bdf8,
+            #a855f7,
+            transparent
+    );
+    background-size: 200% 100%;
+    filter: drop-shadow(0 0 6px rgba(168, 85, 247, 0.9));
+    animation: footer-line 6s linear infinite;
+  }
+
+  // Парящий неоновый блик в углу
+  &__top::before {
+    content: "";
+    position: absolute;
+    right: -60px;
+    bottom: -80px;
+    z-index: -1;
+    width: 260px;
+    height: 260px;
+    pointer-events: none;
+
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.55), transparent 65%);
+    filter: blur(40px);
+    animation: orb-float 10s ease-in-out infinite;
+  }
+
+  // =========================
+  // ВЕРХНЯЯ ЧАСТЬ
+  // =========================
+
+  &__top {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.3fr auto auto;
+    align-items: center;
+    gap: 48px;
+    padding-bottom: 34px;
+
+    // Светящийся разделитель
+    border-bottom: 1px solid transparent;
+    border-image: linear-gradient(
+            90deg,
+            transparent,
+            rgba(129, 140, 248, 0.5),
+            rgba(168, 85, 247, 0.4),
+            transparent
+    ) 1;
+  }
+
+  // ---------- Бренд ----------
+
+  &__brand {
+    max-width: 380px;
+    animation: section-in 0.7s var(--ease) 0.2s both;
+  }
+
+  &__logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+
+  &__logo-mark {
+    position: relative;
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+
+    background: linear-gradient(135deg, #38bdf8, #6366f1 55%, #a855f7);
+    border-radius: 14px;
+    animation: num-pulse 3s ease-in-out infinite;
+
+    // Блик внутри значка
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 7px;
+      border: 2px solid rgba(255, 255, 255, 0.85);
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.6), inset 0 0 8px rgba(255, 255, 255, 0.4);
+    }
+
+    // Точка внутри
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 8px;
+      height: 8px;
+      background: #fff;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #fff, 0 0 18px #c084fc;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  &__logo-text {
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+
+    background: linear-gradient(90deg, #fff, #c7d2fe, #f0abfc, #fff);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: text-shine 5s linear infinite;
+  }
+
+  &__text {
+    margin: 0;
+    color: #8b93c9;
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  // ---------- Меню ----------
+
+  &__menu {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    padding: 6px;
+    list-style: none;
+
+    background: rgba(8, 11, 24, 0.5);
+    border: 1px solid rgba(129, 140, 248, 0.25);
+    border-radius: 20px;
+    backdrop-filter: blur(14px);
+    box-shadow: inset 0 0 18px rgba(99, 102, 241, 0.08);
+
+    li {
+      margin: 0;
+      animation: section-in 0.7s var(--ease) both;
+
+      &:nth-child(1) { animation-delay: 0.3s; }
+      &:nth-child(2) { animation-delay: 0.4s; }
+      &:nth-child(3) { animation-delay: 0.5s; }
+    }
+  }
+
+  &__link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 22px;
+    overflow: hidden;
+    isolation: isolate;
+
+    color: #a5b4fc;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.25px;
+    white-space: nowrap;
+
+    border-radius: 15px;
+
+    transition:
+            color 0.3s ease,
+            text-shadow 0.3s ease,
+            gap 0.35s var(--ease),
+            transform 0.3s var(--ease),
+            box-shadow 0.35s ease;
+
+    // Неоновая точка (появляется при наведении и у активного)
+    &::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      flex-shrink: 0;
+      opacity: 0;
+      background: #fff;
+      border-radius: 50%;
+      box-shadow: 0 0 8px #fff, 0 0 16px #c084fc;
+
+      transform: scale(1);
+      transition: all 0.2s linear;
+    }
+
+    // Градиентная заливка (убираем общий подчёркивающий эффект ссылок)
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      width: auto;
+      height: auto;
+
+      background: linear-gradient(120deg, rgba(99, 102, 241, 0.55), rgba(168, 85, 247, 0.55), rgba(236, 72, 153, 0.45));
+      border-radius: inherit;
+
+      opacity: 0;
+      transform: scale(0.7);
+      transform-origin: center;
+      transition: opacity 0.35s ease, transform 0.45s cubic-bezier(0.34, 1.4, 0.64, 1);
+    }
+
+    &:hover,
+    &.active {
+      gap: 10px;
+      color: #fff;
+      text-shadow:
+              0 0 6px rgba(255, 255, 255, 0.8),
+              0 0 16px rgba(192, 132, 252, 0.9);
+
+      &::before {
+        opacity: 1;
+      }
+
+      &::after {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+
+    &.active {
+      box-shadow: 0 0 20px rgba(168, 85, 247, 0.45), inset 0 0 12px rgba(255, 255, 255, 0.12);
+    }
+
+    &:active {
+      transform: scale(0.96);
+    }
+  }
+
+  // ---------- Кнопка ----------
+
+  &__cta {
+    animation: section-in 0.7s var(--ease) 0.6s both;
+
+    .btn {
+      min-height: 54px;
+      padding: 0 30px;
+    }
+  }
+
+  // =========================
+  // НИЖНЯЯ ПОЛОСА
+  // =========================
+
+  &__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding-top: 22px;
+
+    color: #6f78b0;
+    font-size: 13px;
+  }
+
+  // Статус «онлайн»
+  &__status {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    color: #a5b4fc;
+    font-weight: 600;
+
+    &::before {
+      content: "";
+      width: 9px;
+      height: 9px;
+
+      background: #34d399;
+      border-radius: 50%;
+      animation: online-pulse 2.2s ease-out infinite;
+    }
+  }
+
+  // Кнопка «Наверх»
+  &__up {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+
+    color: #c7d2fe;
+    font-size: 13px;
+    font-weight: 700;
+
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(165, 180, 252, 0.25);
+    border-radius: 999px;
+
+    transition:
+            transform 0.3s var(--ease),
+            color 0.3s ease,
+            border-color 0.3s ease,
+            box-shadow 0.35s ease;
+
+    // Отключаем общую подчёркивающую линию ссылок
+    &::after {
+      display: none;
+    }
+
+    &:hover {
+      transform: translateY(-3px);
+      color: #fff;
+      border-color: rgba(192, 132, 252, 0.8);
+      box-shadow:
+              0 0 22px rgba(168, 85, 247, 0.45),
+              inset 0 0 12px rgba(99, 102, 241, 0.2);
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+}
+
+// =========================
+// АДАПТИВ
+// =========================
+
+@media (max-width: 960px) {
+  .footer {
+    padding: 36px 26px 22px;
+
+    &__top {
+      grid-template-columns: 1fr;
+      justify-items: center;
+      gap: 28px;
+      text-align: center;
+    }
+
+    &__brand {
+      max-width: 460px;
+    }
+
+    &__bottom {
+      flex-wrap: wrap;
+      justify-content: center;
+      text-align: center;
+    }
+  }
+}
+
+@media (max-width: 560px) {
+  .footer {
+    margin-top: 32px;
+    padding: 30px 18px 20px;
+    border-radius: 24px;
+
+    &__menu {
+      flex-direction: column;
+      align-items: stretch;
+      width: 100%;
+    }
+
+    &__link {
+      justify-content: center;
+    }
+
+    &__cta {
+      width: 100%;
+
+      .btn {
+        width: 100%;
+      }
+    }
+  }
+}

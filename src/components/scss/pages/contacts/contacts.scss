@@ -1,0 +1,443 @@
+// =========================
+// КАРТОЧКИ КОНТАКТОВ
+// =========================
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+  margin-bottom: 20px;
+}
+
+.contact-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 26px 24px 24px;
+  overflow: hidden;
+
+  color: inherit;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(165, 180, 252, 0.16);
+  border-radius: 22px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+  transition:
+          transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+          border-color 0.3s ease,
+          background 0.3s ease,
+          box-shadow 0.4s ease;
+
+  // Убираем общее подчёркивание ссылок
+  &::after {
+    display: none;
+  }
+
+  // Неоновая линия сверху
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 12%;
+    width: 76%;
+    height: 2px;
+
+    background: linear-gradient(90deg, transparent, #38bdf8, #a855f7, #ec4899, transparent);
+    filter: drop-shadow(0 0 6px rgba(168, 85, 247, 0.9));
+
+    opacity: 0;
+    transform: scaleX(0.3);
+    transition: opacity 0.3s ease, transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  &__icon {
+    display: grid;
+    place-items: center;
+    width: 54px;
+    height: 54px;
+    margin-bottom: 12px;
+
+    font-size: 24px;
+
+    background: linear-gradient(135deg, #38bdf8, #6366f1 55%, #a855f7);
+    border-radius: 17px;
+    box-shadow: 0 0 22px rgba(99, 102, 241, 0.5);
+
+    transition: transform 0.45s cubic-bezier(0.34, 1.5, 0.64, 1), box-shadow 0.4s ease;
+  }
+
+  &__label {
+    color: #8b93c9;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  &__value {
+    color: #f1f5f9;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+    overflow-wrap: anywhere;
+  }
+
+  &__hint {
+    color: #7a83bb;
+    font-size: 13px;
+  }
+
+  &__arrow {
+    position: absolute;
+    top: 22px;
+    right: 22px;
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+
+    color: #fff;
+    font-size: 16px;
+
+    background: rgba(168, 85, 247, 0.25);
+    border: 1px solid rgba(192, 132, 252, 0.5);
+    border-radius: 50%;
+
+    opacity: 0;
+    transform: translate(-8px, 8px);
+    transition: opacity 0.3s ease, transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  &:hover {
+    transform: translateY(-6px);
+    background: rgba(99, 102, 241, 0.09);
+    border-color: rgba(192, 132, 252, 0.55);
+
+    box-shadow:
+            0 20px 44px rgba(0, 0, 0, 0.35),
+            0 0 32px rgba(99, 102, 241, 0.25),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+    &::before {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+
+    .contact-card__icon {
+      transform: rotate(-8deg) scale(1.1);
+      box-shadow: 0 0 30px rgba(168, 85, 247, 0.8);
+    }
+
+    .contact-card__arrow {
+      opacity: 1;
+      transform: translate(0, 0);
+    }
+  }
+}
+
+// =========================
+// ДВЕ ПАНЕЛИ РЯДОМ
+// =========================
+
+.contact-split {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 18px;
+  margin-bottom: 20px;
+}
+
+.panel {
+  padding: 26px 24px;
+
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(165, 180, 252, 0.16);
+  border-radius: 22px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+  &__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+
+  &__title {
+    margin: 0;
+    color: #f1f5f9;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  // Статус «сейчас открыто»
+  &__status {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 6px 14px;
+
+    color: #6ee7b7;
+    font-size: 12px;
+    font-weight: 700;
+
+    background: rgba(52, 211, 153, 0.1);
+    border: 1px solid rgba(52, 211, 153, 0.4);
+    border-radius: 999px;
+    text-shadow: 0 0 10px rgba(52, 211, 153, 0.7);
+
+    &::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      background: #34d399;
+      border-radius: 50%;
+      animation: online-pulse 2.2s ease-out infinite;
+    }
+  }
+}
+
+// =========================
+// ГРАФИК РАБОТЫ
+// =========================
+
+.hours {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  &__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin: 0;
+    padding: 11px 14px;
+
+    color: #a5b0e0;
+    font-size: 14px;
+    font-weight: 600;
+
+    border-radius: 13px;
+    transition: background 0.3s ease, color 0.3s ease, transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+
+    &:hover {
+      color: #fff;
+      background: rgba(99, 102, 241, 0.12);
+      transform: translateX(4px);
+    }
+
+    // Сегодняшний день
+    &--today {
+      color: #fff;
+      background: linear-gradient(100deg, rgba(99, 102, 241, 0.35), rgba(168, 85, 247, 0.22));
+      box-shadow: 0 0 20px rgba(168, 85, 247, 0.3), inset 0 0 12px rgba(255, 255, 255, 0.06);
+
+      .hours__time {
+        color: #fff;
+        text-shadow: 0 0 10px rgba(192, 132, 252, 0.9);
+      }
+    }
+
+    // Выходной
+    &--off {
+      color: #6f78b0;
+
+      .hours__time {
+        color: #fb7185;
+      }
+    }
+  }
+
+  &__day {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &__tag {
+    padding: 3px 9px;
+
+    color: #fff;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+
+    background: linear-gradient(120deg, #6366f1, #a855f7);
+    border-radius: 999px;
+  }
+
+  &__time {
+    color: #c7d2fe;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+}
+
+// =========================
+// СОЦСЕТИ
+// =========================
+
+.socials {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    margin: 0;
+  }
+}
+
+.social {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px 12px 12px;
+  overflow: hidden;
+  isolation: isolate;
+
+  color: inherit;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(165, 180, 252, 0.18);
+  border-radius: 18px;
+
+  transition:
+          transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+          border-color 0.3s ease,
+          box-shadow 0.4s ease;
+
+  // Убираем общее подчёркивание ссылок
+  &::after {
+    display: none;
+  }
+
+  // Цветная заливка при наведении
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    background: linear-gradient(110deg, rgba(56, 189, 248, 0.2), rgba(99, 102, 241, 0.28), rgba(168, 85, 247, 0.28));
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+
+  &__icon {
+    display: grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    flex-shrink: 0;
+
+    color: #fff;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+
+    background: linear-gradient(135deg, #38bdf8, #6366f1 55%, #a855f7);
+    border-radius: 14px;
+    box-shadow: 0 0 16px rgba(99, 102, 241, 0.45);
+
+    transition: transform 0.45s cubic-bezier(0.34, 1.5, 0.64, 1);
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    min-width: 0;
+
+    b {
+      color: #e2e8f0;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    small {
+      color: #7a83bb;
+      font-size: 13px;
+    }
+  }
+
+  &__arrow {
+    margin-left: auto;
+    color: #a5b4fc;
+    font-size: 18px;
+
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), color 0.3s ease, text-shadow 0.3s ease;
+  }
+
+  &:hover {
+    transform: translateX(6px);
+    border-color: rgba(192, 132, 252, 0.6);
+    box-shadow: 0 0 26px rgba(168, 85, 247, 0.3);
+
+    &::before {
+      opacity: 1;
+    }
+
+    .social__icon {
+      transform: rotate(-8deg) scale(1.1);
+    }
+
+    .social__arrow {
+      color: #fff;
+      text-shadow: 0 0 10px #c084fc;
+      transform: translate(3px, -3px);
+    }
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+// =========================
+// ФОРМА
+// =========================
+
+.contact-check {
+  margin: 22px 0 26px;
+}
+
+// =========================
+// АДАПТИВ
+// =========================
+
+@media (max-width: 860px) {
+  .contact-split {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .contact-card {
+    padding: 22px 20px;
+  }
+
+  .panel {
+    padding: 22px 16px;
+
+    &__head {
+      flex-wrap: wrap;
+    }
+  }
+
+  .hours__row {
+    padding: 10px;
+    font-size: 13px;
+  }
+}

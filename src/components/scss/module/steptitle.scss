@@ -1,0 +1,47 @@
+.ad-section {
+  animation: section-in 0.7s var(--ease) both;
+
+  // Каскадная задержка появления: 0.15s, 0.25s, 0.35s, 0.45s
+  @for $i from 1 through 4 {
+    &:nth-child(#{$i}) { animation-delay: 0.05s + $i * 0.1s; }
+  }
+
+  &__title {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 20px 0 24px;
+    color: #f1f5f9;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+
+    // Неоновая линия после заголовка
+    &::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(129, 140, 248, 0.55), rgba(168, 85, 247, 0.25), transparent);
+    }
+  }
+
+  &__num {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+    background: linear-gradient(135deg, #6366f1, #a855f7, #ec4899);
+    border-radius: 12px;
+    animation: num-pulse 3s ease-in-out infinite;
+  }
+
+  @media (max-width: 640px) {
+    &__title { font-size: 16px; }
+  }
+}

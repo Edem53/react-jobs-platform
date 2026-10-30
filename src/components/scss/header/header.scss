@@ -1,0 +1,591 @@
+@use "auth.scss";
+
+// =========================
+// ПЕРЕМЕННАЯ ДЛЯ ВРАЩАЮЩЕЙСЯ РАМКИ
+// =========================
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes border-spin {
+  to { --angle: 360deg; }
+}
+
+@keyframes aurora {
+  0%   { background-position: 0% 0%, 100% 100%, 50% 0%, 0 0; }
+  50%  { background-position: 100% 50%, 0% 50%, 0% 100%, 0 0; }
+  100% { background-position: 0% 0%, 100% 100%, 50% 0%, 0 0; }
+}
+
+@keyframes header-appear {
+  from { opacity: 0; transform: translateY(-24px) scale(0.98); filter: blur(6px); }
+  to   { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+
+@keyframes ring-spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes online-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.6); }
+  70%  { box-shadow: 0 0 0 9px rgba(52, 211, 153, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0); }
+}
+
+@keyframes btn-gradient {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes btn-glow {
+  0%, 100% { box-shadow: 0 8px 22px rgba(124, 58, 237, 0.35), 0 0 0 0 rgba(139, 92, 246, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3); }
+  50%      { box-shadow: 0 10px 30px rgba(124, 58, 237, 0.5), 0 0 0 7px rgba(139, 92, 246, 0), inset 0 1px 0 rgba(255, 255, 255, 0.3); }
+}
+
+@keyframes text-shine {
+  to { background-position: 200% center; }
+}
+
+@keyframes neon-pulse {
+  0%, 100% {
+    box-shadow:
+            0 0 14px rgba(168, 85, 247, 0.65),
+            0 0 34px rgba(99, 102, 241, 0.4),
+            inset 0 0 12px rgba(255, 255, 255, 0.25);
+  }
+  50% {
+    box-shadow:
+            0 0 22px rgba(192, 132, 252, 0.9),
+            0 0 52px rgba(99, 102, 241, 0.6),
+            inset 0 0 16px rgba(255, 255, 255, 0.35);
+  }
+}
+
+@keyframes frame-glow {
+  0%, 100% { box-shadow: 0 0 0 1px rgba(129, 140, 248, 0.12), 0 0 22px rgba(99, 102, 241, 0.15), inset 0 0 18px rgba(99, 102, 241, 0.1); }
+  50%      { box-shadow: 0 0 0 1px rgba(168, 85, 247, 0.25), 0 0 34px rgba(168, 85, 247, 0.28), inset 0 0 24px rgba(168, 85, 247, 0.16); }
+}
+.header_top {
+  --accent: #818cf8;
+  --accent-2: #a855f7;
+  --accent-3: #38bdf8;
+  --text: #f1f5f9;
+  --muted: #94a3b8;
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  position: relative;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 35px;
+
+  width: 100%;
+  min-height: 98px;
+  padding: 18px 42px;
+  box-sizing: border-box;
+
+  border-radius: 28px;
+  color: var(--text);
+
+  // Живой фон: три «аврора»-пятна поверх тёмной базы
+  background:
+          radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.38), transparent 45%),
+          radial-gradient(circle at 80% 50%, rgba(168, 85, 247, 0.32), transparent 45%),
+          radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.22), transparent 50%),
+          linear-gradient(120deg, #0b1020, #131733 50%, #0e1228);
+  background-size: 160% 160%, 160% 160%, 160% 160%, 100% 100%;
+  animation:
+          header-appear 0.9s var(--ease) both,
+          aurora 14s ease-in-out infinite;
+
+  box-shadow:
+          0 25px 60px rgba(15, 18, 50, 0.45),
+          0 8px 20px rgba(15, 18, 50, 0.3),
+          inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+  // Вращающаяся градиентная рамка
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 1.5px;
+    border-radius: inherit;
+    pointer-events: none;
+
+    background: conic-gradient(
+            from var(--angle),
+            rgba(99, 102, 241, 0.05),
+            rgba(56, 189, 248, 0.9),
+            rgba(168, 85, 247, 0.9),
+            rgba(99, 102, 241, 0.05) 60%
+    );
+    animation: border-spin 7s linear infinite;
+
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  }
+
+  // Тонкая световая линия сверху
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 12%;
+    width: 76%;
+    height: 1px;
+    pointer-events: none;
+
+    background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.55),
+            transparent
+    );
+  }
+
+
+  // =========================
+  // КНОПКИ ВЫБОРА
+  // =========================
+
+  .choice {
+    --pad: 5px;
+
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+
+    flex: 0 1 auto;
+    width: 100%;
+    max-width: 440px;
+    margin: 0 auto;
+    padding: var(--pad);
+
+    background: rgba(8, 11, 24, 0.55);
+    border: 1px solid rgba(129, 140, 248, 0.28);
+    border-radius: 22px;
+    backdrop-filter: blur(14px);
+
+    animation: frame-glow 4s ease-in-out infinite;
+
+    // Скользящий неоновый ползунок
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      top: var(--pad);
+      bottom: var(--pad);
+      left: var(--pad);
+      width: calc((100% - var(--pad) * 2) / 2);
+
+      border-radius: 16px;
+      pointer-events: none;
+
+      transition:
+              transform 0.55s cubic-bezier(0.34, 1.4, 0.64, 1),
+              opacity 0.3s ease;
+    }
+
+    &::before {
+      z-index: 0;
+      background: linear-gradient(120deg, #6366f1, #a855f7, #ec4899, #6366f1);
+      background-size: 300% 100%;
+      animation:
+              btn-gradient 5s ease infinite,
+              neon-pulse 2.6s ease-in-out infinite;
+    }
+
+    // Размытая копия под ползунком — даёт «неоновый» ореол
+    &::after {
+      z-index: -1;
+      background: linear-gradient(120deg, #6366f1, #a855f7, #ec4899);
+      filter: blur(18px);
+      opacity: 0.55;
+    }
+
+    // Когда активна вторая кнопка — ползунок уезжает вправо
+    &:has(.find_work.active)::before,
+    &:has(.find_work.active)::after {
+      transform: translateX(100%);
+    }
+
+    // Если ни одна кнопка не активна — ползунок скрыт
+    &:not(:has(.active))::before,
+    &:not(:has(.active))::after {
+      opacity: 0;
+    }
+
+    .task,
+    .find_work {
+      position: relative;
+      z-index: 1;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+
+      min-height: 48px;
+      padding: 0 22px;
+
+      color: #8b93c9;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      white-space: nowrap;
+      text-align: center;
+      user-select: none;
+      cursor: pointer;
+
+      background: none;
+      border: 0;
+      border-radius: 16px;
+
+      transition:
+              color 0.35s ease,
+              text-shadow 0.35s ease,
+              gap 0.35s var(--ease),
+              transform 0.25s var(--ease);
+
+      // Неоновая точка перед текстом у активной кнопки
+      &::before {
+        content: "";
+        width: 0;
+        height: 6px;
+        flex-shrink: 0;
+
+        background: #fff;
+        border-radius: 50%;
+        box-shadow: 0 0 8px #fff, 0 0 16px #c084fc;
+
+        transform: scale(0);
+        transition:
+                width 0.35s var(--ease),
+                transform 0.35s var(--ease);
+      }
+      &:after {
+        display: none;
+      }
+      // Подсветка неактивной кнопки при наведении
+      &:hover:not(.active) {
+        color: #e0e7ff;
+        text-shadow: 0 0 10px rgba(165, 180, 252, 0.7);
+      }
+
+      &:active {
+        transform: scale(0.96);
+      }
+
+      &.active {
+        gap: 10px;
+        color: #fff;
+        text-shadow:
+                0 0 6px rgba(255, 255, 255, 0.85),
+                0 0 16px rgba(192, 132, 252, 0.9),
+                0 0 30px rgba(99, 102, 241, 0.8);
+
+        &::before {
+          width: 6px;
+          transform: scale(1);
+        }
+      }
+    }
+
+    @media (max-width: 860px) {
+      max-width: none;
+    }
+  }
+
+  // =========================
+  // БУРГЕР-МЕНЮ
+  // =========================
+
+  .burger-menu {
+    position: relative;
+    flex-shrink: 0;
+    max-width: 295px;
+    width: 100%;
+    text-align: right;
+    .burger-menu__title {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 13px;
+
+      min-width: 128px;
+      min-height: 52px;
+      padding: 0 22px;
+
+      color: #e2e8f0;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.25px;
+
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      backdrop-filter: blur(12px);
+
+      box-shadow:
+              0 6px 16px rgba(0, 0, 0, 0.2),
+              inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+      cursor: pointer;
+
+      transition:
+              color 0.25s ease,
+              background 0.3s ease,
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
+
+      // Иконка: три линии, которые «выравниваются» при наведении
+      &::before {
+        content: "";
+        width: 18px;
+        height: 14px;
+        flex-shrink: 0;
+
+        background:
+                linear-gradient(#a5b4fc, #a5b4fc) top left / 100% 2px no-repeat,
+                linear-gradient(#c4b5fd, #c4b5fd) center left / 60% 2px no-repeat,
+                linear-gradient(#a5b4fc, #a5b4fc) bottom left / 100% 2px no-repeat;
+        border-radius: 2px;
+
+        transition: background-size 0.35s var(--ease), transform 0.35s var(--ease);
+      }
+    }
+
+    // Выпадающая панель
+    .burger-menu__menu {
+      position: absolute;
+      top: calc(100% + 16px);
+      right: 0;
+
+      width: 240px;
+      padding: 10px;
+
+      background: rgba(18, 21, 48, 0.88);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 22px;
+      backdrop-filter: blur(22px) saturate(160%);
+
+      box-shadow:
+              0 30px 70px rgba(0, 0, 0, 0.5),
+              0 0 40px rgba(99, 102, 241, 0.15),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+
+      transform: translateY(-14px) scale(0.94);
+      transform-origin: top right;
+
+      transition:
+              opacity 0.3s ease,
+              visibility 0.3s ease,
+              transform 0.45s var(--ease);
+
+      // Невидимый «мостик», чтобы меню не закрывалось при движении мыши
+      &::after {
+        content: "";
+        position: absolute;
+        top: -18px;
+        left: 0;
+        right: 0;
+        height: 18px;
+      }
+
+      // Маленький треугольник сверху
+      &::before {
+        content: "";
+        position: absolute;
+        top: -7px;
+        right: 30px;
+
+        width: 13px;
+        height: 13px;
+
+        background: #181b3d;
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+        border-left: 1px solid rgba(255, 255, 255, 0.12);
+
+        transform: rotate(45deg);
+      }
+
+      ul {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        li {
+          position: relative;
+          display: flex;
+          align-items: center;
+
+          min-height: 48px;
+          padding: 0 16px;
+
+          color: #cbd5e1;
+          font-size: 14px;
+          font-weight: 600;
+
+          border-radius: 14px;
+          cursor: pointer;
+
+          // Каскадное появление
+          opacity: 0;
+          transform: translateX(16px);
+
+          transition:
+                  opacity 0.35s ease,
+                  transform 0.45s var(--ease),
+                  color 0.2s ease,
+                  background 0.25s ease,
+                  padding-left 0.3s var(--ease);
+
+          &:nth-child(1) { transition-delay: 0.05s, 0.05s, 0s, 0s, 0s; }
+          &:nth-child(2) { transition-delay: 0.1s, 0.1s, 0s, 0s, 0s; }
+          &:nth-child(3) { transition-delay: 0.15s, 0.15s, 0s, 0s, 0s; }
+
+          &::before {
+            content: "";
+            width: 6px;
+            height: 6px;
+            margin-right: 12px;
+            flex-shrink: 0;
+
+            background: #6366f1;
+            border-radius: 50%;
+            opacity: 0.6;
+
+            transition:
+                    background 0.25s ease,
+                    box-shadow 0.25s ease,
+                    transform 0.25s ease,
+                    opacity 0.25s ease;
+          }
+
+          // Стрелка справа
+          &::after {
+            content: "›";
+            margin-left: auto;
+            font-size: 20px;
+            line-height: 1;
+
+            opacity: 0;
+            transform: translateX(-8px);
+
+            transition: opacity 0.25s ease, transform 0.3s var(--ease);
+          }
+
+          &:hover {
+            padding-left: 21px;
+            color: #fff;
+
+            background: linear-gradient(
+                    100deg,
+                    rgba(99, 102, 241, 0.3),
+                    rgba(168, 85, 247, 0.18)
+            );
+
+            &::before {
+              background: #a5b4fc;
+              box-shadow: 0 0 12px rgba(165, 180, 252, 0.9);
+              transform: scale(1.4);
+              opacity: 1;
+            }
+
+            &::after {
+              opacity: 1;
+              transform: translateX(0);
+            }
+          }
+
+          &:active {
+            transform: scale(0.97);
+          }
+        }
+      }
+    }
+
+    // Открытие меню наведением
+    &:hover {
+      .burger-menu__title {
+        color: #fff;
+        background: rgba(255, 255, 255, 0.12);
+        border-color: rgba(165, 180, 252, 0.5);
+
+        box-shadow:
+                0 12px 28px rgba(79, 70, 229, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+
+        &::before {
+          background-size: 60% 2px, 100% 2px, 60% 2px;
+          transform: scale(1.1);
+        }
+      }
+
+      .burger-menu__menu {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0) scale(1);
+
+        ul li {
+          opacity: 1;
+          transform: translateX(0);
+
+          &:active {
+            transform: scale(0.97);
+          }
+        }
+      }
+    }
+  }
+
+  // =========================
+  // АДАПТИВ
+  // =========================
+
+  @media (max-width: 860px) {
+    flex-wrap: wrap;
+    padding: 16px 20px;
+    gap: 16px;
+
+    .choice {
+      order: 3;
+      flex-basis: 100%;
+
+      .task,
+      .find_work {
+        flex: 1;
+        padding: 0 16px;
+      }
+    }
+  }
+}
+
+// Уважение настройки отключения анимации
+@media (prefers-reduced-motion: reduce) {
+  .header_top,
+  .header_top *,
+  .header_top *::before,
+  .header_top *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+

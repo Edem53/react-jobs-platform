@@ -1,0 +1,390 @@
+// =========================
+// ШАПКА ОБЪЯВЛЕНИЯ
+// =========================
+
+
+// Чипы в шапке
+.job-chip {
+  padding: 8px 16px;
+
+  color: #c7d2fe;
+  font-size: 13px;
+  font-weight: 600;
+
+  background: rgba(99, 102, 241, 0.14);
+  border: 1px solid rgba(129, 140, 248, 0.32);
+  border-radius: 999px;
+
+  &--alt {
+    color: #f0abfc;
+    background: rgba(168, 85, 247, 0.14);
+    border-color: rgba(192, 132, 252, 0.4);
+  }
+}
+
+// =========================
+// ОПИСАНИЕ
+// =========================
+
+.job-text {
+  position: relative;
+  padding: 24px 26px 24px 30px;
+
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(165, 180, 252, 0.16);
+  border-radius: 22px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+  // Левая неоновая полоса
+  &::before {
+    content: "";
+    position: absolute;
+    top: 20px;
+    bottom: 20px;
+    left: 0;
+    width: 3px;
+
+    background: linear-gradient(180deg, #38bdf8, #6366f1, #a855f7);
+    border-radius: 0 4px 4px 0;
+    box-shadow: 0 0 12px rgba(99, 102, 241, 0.8);
+  }
+
+  p {
+    margin: 0;
+    color: #cbd5e1;
+    font-size: 16px;
+    line-height: 1.75;
+    overflow-wrap: anywhere;
+    white-space: pre-line;
+  }
+}
+
+// =========================
+// УСЛОВИЯ
+// =========================
+
+.job-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 16px;
+}
+
+.job-fact {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 22px 22px 20px;
+  overflow: hidden;
+
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(165, 180, 252, 0.16);
+  border-radius: 20px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+
+  transition:
+          transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+          border-color 0.3s ease,
+          background 0.3s ease,
+          box-shadow 0.4s ease;
+
+  &__icon {
+    display: grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    margin-bottom: 10px;
+
+    font-size: 21px;
+
+    background: linear-gradient(135deg, #38bdf8, #6366f1 55%, #a855f7);
+    border-radius: 15px;
+    box-shadow: 0 0 18px rgba(99, 102, 241, 0.5);
+
+    transition: transform 0.45s cubic-bezier(0.34, 1.5, 0.64, 1), box-shadow 0.4s ease;
+  }
+
+  &__label {
+    color: #8b93c9;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  &__value {
+    color: #f1f5f9;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+    background: rgba(99, 102, 241, 0.09);
+    border-color: rgba(192, 132, 252, 0.55);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35), 0 0 30px rgba(99, 102, 241, 0.25);
+
+    .job-fact__icon {
+      transform: rotate(-8deg) scale(1.1);
+      box-shadow: 0 0 28px rgba(168, 85, 247, 0.8);
+    }
+  }
+
+  // Срочное
+  &--urgent {
+    border-color: rgba(236, 72, 153, 0.4);
+    background: linear-gradient(100deg, rgba(236, 72, 153, 0.12), rgba(255, 255, 255, 0.03) 65%);
+
+    .job-fact__icon {
+      background: linear-gradient(135deg, #ec4899, #a855f7);
+      box-shadow: 0 0 20px rgba(236, 72, 153, 0.6);
+    }
+
+    .job-fact__value {
+      color: #f9a8d4;
+      text-shadow: 0 0 12px rgba(236, 72, 153, 0.6);
+    }
+  }
+}
+
+// =========================
+// АВТОР
+// =========================
+
+.job-author {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  padding: 26px 28px;
+
+  background:
+          radial-gradient(circle at 100% 0%, rgba(168, 85, 247, 0.18), transparent 55%),
+          rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(165, 180, 252, 0.2);
+  border-radius: 24px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  margin-bottom: 30px;
+  &__avatar {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 84px;
+    height: 84px;
+    flex-shrink: 0;
+
+    color: #fff;
+    font-size: 28px;
+    font-weight: 800;
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.7);
+
+    background: linear-gradient(135deg, #38bdf8, #6366f1 55%, #a855f7);
+    border-radius: 50%;
+    box-shadow: 0 0 30px rgba(99, 102, 241, 0.55);
+
+    transition: transform 0.45s cubic-bezier(0.34, 1.5, 0.64, 1);
+
+    // Вращающееся кольцо
+    &::before {
+      content: "";
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+
+      background: conic-gradient(from 0deg, #38bdf8, #6366f1, #a855f7, transparent 70%, #38bdf8);
+      -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2.5px), #000 calc(100% - 2px));
+      mask: radial-gradient(farthest-side, transparent calc(100% - 2.5px), #000 calc(100% - 2px));
+      animation: ring-spin 4s linear infinite;
+    }
+
+    // Индикатор «онлайн»
+    &::after {
+      content: "";
+      position: absolute;
+      right: 3px;
+      bottom: 3px;
+      width: 16px;
+      height: 16px;
+
+      background: #34d399;
+      border: 3px solid #131733;
+      border-radius: 50%;
+      animation: online-pulse 2.2s ease-out infinite;
+    }
+
+    &:hover {
+      transform: rotate(-6deg) scale(1.06);
+    }
+  }
+
+  &__info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__name {
+    margin: 0 0 2px;
+    color: #f1f5f9;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  &__role {
+    display: block;
+    margin-bottom: 16px;
+    color: #8b93c9;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  &__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  &:after {
+    display: none !important;
+  }
+}
+
+// Ссылки-контакты
+.job-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 18px 10px 10px;
+  overflow: hidden;
+  isolation: isolate;
+
+  color: inherit;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(165, 180, 252, 0.22);
+  border-radius: 16px;
+
+  transition:
+          transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+          border-color 0.3s ease,
+          box-shadow 0.4s ease;
+
+  // Убираем общее подчёркивание ссылок
+  &::after {
+    display: none;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    background: linear-gradient(110deg, rgba(56, 189, 248, 0.2), rgba(99, 102, 241, 0.28), rgba(168, 85, 247, 0.28));
+    opacity: 0;
+    transition: opacity 0.35s ease;
+  }
+
+  &__icon {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+
+    font-size: 18px;
+
+    background: linear-gradient(135deg, #38bdf8, #6366f1 55%, #a855f7);
+    border-radius: 12px;
+    box-shadow: 0 0 14px rgba(99, 102, 241, 0.45);
+
+    transition: transform 0.45s cubic-bezier(0.34, 1.5, 0.64, 1);
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+
+    small {
+      color: #7a83bb;
+      font-size: 12px;
+    }
+
+    b {
+      color: #e2e8f0;
+      font-size: 14px;
+      font-weight: 700;
+      overflow-wrap: anywhere;
+    }
+  }
+
+  &:hover {
+    transform: translateY(-3px);
+    border-color: rgba(192, 132, 252, 0.65);
+    box-shadow: 0 0 26px rgba(168, 85, 247, 0.32);
+
+    &::before {
+      opacity: 1;
+    }
+
+    .job-link__icon {
+      transform: rotate(-8deg) scale(1.1);
+    }
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+// =========================
+// АДАПТИВ
+// =========================
+
+@media (max-width: 720px) {
+  .job-hero {
+    padding: 24px 20px 22px;
+
+    &__title {
+      font-size: 25px;
+    }
+
+    &__pay-value {
+      font-size: 22px;
+    }
+
+    &__bottom {
+      flex-direction: column;
+      align-items: stretch;
+
+      .btn {
+        width: 100%;
+      }
+    }
+  }
+
+  .job-author {
+    flex-direction: column;
+    align-items: center;
+    padding: 24px 18px;
+    text-align: center;
+
+    &__links {
+      flex-direction: column;
+      align-items: stretch;
+      width: 100%;
+    }
+
+  }
+}
+
+@media (max-width: 480px) {
+  .job-text {
+    padding: 20px 18px 20px 22px;
+
+    p {
+      font-size: 15px;
+    }
+  }
+}

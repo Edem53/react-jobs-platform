@@ -1,0 +1,148 @@
+// =========================
+// БЛОКИ ФОРМ (ВХОД / РЕГИСТРАЦИЯ)
+// =========================
+.header_top {
+  // =========================
+  // АККАУНТ
+  // =========================
+
+  .account,
+  .login {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+
+    padding: 9px 22px 9px 10px;
+    flex-shrink: 0;
+    max-width: 295px;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    color: var(--text);
+
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    backdrop-filter: blur(14px);
+
+    box-shadow:
+            0 6px 18px rgba(0, 0, 0, 0.25),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+    cursor: pointer;
+
+    transition:
+            transform 0.35s var(--ease),
+            background 0.3s ease,
+            border-color 0.3s ease,
+            box-shadow 0.35s ease;
+
+    // Индикатор «онлайн»
+    &::before {
+      content: "";
+      position: absolute;
+      left: 48px;
+      top: 42px;
+      z-index: 2;
+
+      width: 12px;
+      height: 12px;
+
+      background: #34d399;
+      border: 2px solid #131733;
+      border-radius: 50%;
+
+      animation: online-pulse 2.2s ease-out infinite;
+    }
+
+    span {
+      background: linear-gradient(90deg, #fff, #c7d2fe, #f0abfc, #fff);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: text-shine 5s linear infinite;
+    }
+
+    .icon {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      width: 48px;
+      height: 48px;
+      flex-shrink: 0;
+
+      transition: transform 0.45s var(--ease);
+
+      // Вращающееся кольцо вокруг аватара
+      &::before {
+        content: "";
+        position: absolute;
+        inset: -4px;
+        border-radius: 50%;
+
+        background: conic-gradient(
+                from 0deg,
+                #38bdf8,
+                #6366f1,
+                #a855f7,
+                transparent 70%,
+                #38bdf8
+        );
+        -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 1.5px));
+        mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 1.5px));
+
+        animation: ring-spin 4s linear infinite;
+      }
+
+      // Мягкое свечение
+      &::after {
+        content: "";
+        position: absolute;
+        inset: -6px;
+        z-index: -1;
+        border-radius: 50%;
+
+        background: linear-gradient(135deg, #38bdf8, #6366f1, #a855f7);
+        filter: blur(14px);
+        opacity: 0.35;
+
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+
+      svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+        transition: filter 0.3s ease;
+      }
+    }
+
+    &:hover {
+      transform: translateY(-3px);
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(129, 140, 248, 0.5);
+
+      box-shadow:
+              0 16px 34px rgba(79, 70, 229, 0.3),
+              inset 0 1px 0 rgba(255, 255, 255, 0.15);
+
+      .icon {
+        transform: rotate(-8deg) scale(1.1);
+
+        &::after {
+          opacity: 0.8;
+          transform: scale(1.25);
+        }
+      }
+    }
+
+    &:active {
+      transform: translateY(-1px) scale(0.97);
+    }
+  }
+}

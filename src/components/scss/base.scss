@@ -1,0 +1,1058 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+// ==========================================================================
+// 1. ПЕРЕМЕННЫЕ
+// ==========================================================================
+
+:root {
+  // Фон и поверхности
+  --bg: #080b18;
+  --bg-soft: #0e1228;
+  --bg-card: rgba(14, 18, 40, 0.92);
+  --surface: rgba(255, 255, 255, 0.05);
+  --surface-hover: rgba(255, 255, 255, 0.09);
+  --border: rgba(255, 255, 255, 0.1);
+  --border-strong: rgba(165, 180, 252, 0.45);
+
+  // Текст
+  --text: #e2e8f0;
+  --text-strong: #f8fafc;
+  --muted: #94a3b8;
+  --muted-2: #8b93c9;
+  --hint: #6f78b0;
+  --placeholder: #64748b;
+
+  // Акценты
+  --accent: #818cf8;
+  --accent-strong: #6366f1;
+  --accent-2: #a855f7;
+  --accent-3: #38bdf8;
+  --success: #34d399;
+  --danger: #fb7185;
+  --gradient: linear-gradient(120deg, #38bdf8, #6366f1 50%, #a855f7);
+
+  // Радиусы и анимация
+  --radius-s: 12px;
+  --radius-m: 16px;
+  --radius-l: 24px;
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  color-scheme: dark;
+}
+
+// Нужно для анимации вращающейся рамки (.ad-form::before)
+@property --angle {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 0deg;
+}
+
+// ==========================================================================
+// 2. МИКСИНЫ
+// ==========================================================================
+
+@mixin gradient-text($gradient) {
+  background: $gradient;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+// ==========================================================================
+// 3. RESET И БАЗА
+// ==========================================================================
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(129, 140, 248, 0.5) transparent;
+}
+
+html {
+  min-height: 100%;
+  background-color: var(--bg);
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  position: relative;
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
+  font: 400 16px/1.6 "Montserrat", Inter, "Segoe UI", Arial, sans-serif;
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+
+  // Цветные «пятна» аврора-фона
+  &::before,
+  &::after {
+    content: "";
+    position: fixed;
+    z-index: -1;
+    width: 55vw;
+    height: 55vw;
+    border-radius: 50%;
+    filter: blur(90px);
+    pointer-events: none;
+    will-change: transform;
+    animation: bg-drift 24s ease-in-out infinite;
+  }
+
+  &::before {
+    --dx: 3%;
+    --dy: -4%;
+    top: -15%;
+    left: -10%;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.32), transparent 65%);
+  }
+
+  &::after {
+    --dx: -4%;
+    --dy: 3%;
+    right: -12%;
+    bottom: -20%;
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.26), transparent 65%);
+    animation-delay: -10s;
+  }
+}
+
+// ---------- Заголовки ----------
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 20px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  color: var(--text-strong);
+}
+
+h1 {
+  font-size: 42px;
+  @include gradient-text(linear-gradient(100deg, #fff 10%, #c7d2fe 45%, #e9d5ff 75%, #fff));
+}
+
+h2 { font-size: 34px; }
+h3 { font-size: 28px; }
+h4 { font-size: 23px; }
+h5 { font-size: 19px; }
+
+h6 {
+  font-size: 16px;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+// ---------- Текст ----------
+
+p {
+  margin: 0 0 16px;
+
+  &:last-child { margin-bottom: 0; }
+}
+
+small {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+strong, b {
+  font-weight: 700;
+  color: var(--text-strong);
+}
+
+mark {
+  padding: 2px 6px;
+  color: var(--text-strong);
+  background: rgba(99, 102, 241, 0.35);
+  border-radius: 6px;
+}
+
+code, kbd, pre {
+  font-family: "JetBrains Mono", "Fira Code", Consolas, monospace;
+  font-size: 0.9em;
+}
+
+code, kbd {
+  padding: 2px 7px;
+  color: #c7d2fe;
+  background: rgba(99, 102, 241, 0.15);
+  border: 1px solid rgba(129, 140, 248, 0.25);
+  border-radius: 7px;
+}
+
+pre {
+  margin: 0 0 16px;
+  padding: 18px 20px;
+  overflow-x: auto;
+  background: rgba(8, 11, 24, 0.7);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-m);
+
+  code {
+    padding: 0;
+    background: none;
+    border: 0;
+  }
+}
+
+blockquote {
+  margin: 0 0 16px;
+  padding: 14px 20px;
+  color: var(--muted);
+  font-style: italic;
+  background: linear-gradient(100deg, rgba(99, 102, 241, 0.12), transparent);
+  border-left: 3px solid var(--accent-strong);
+  border-radius: 0 var(--radius-s) var(--radius-s) 0;
+}
+
+hr {
+  height: 1px;
+  margin: 28px 0;
+  border: 0;
+  background: linear-gradient(90deg, transparent, rgba(129, 140, 248, 0.5), rgba(168, 85, 247, 0.4), transparent);
+}
+
+// ---------- Ссылки ----------
+
+a {
+  position: relative;
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.25s ease;
+
+  // Линия, которая «прорисовывается» при наведении
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 1.5px;
+    background: var(--gradient);
+    border-radius: 2px;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s var(--ease);
+  }
+
+  &:hover {
+    color: #c7d2fe;
+
+    &::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+    border-radius: 4px;
+  }
+
+  // Ссылки-обёртки (картинки, иконки) без подчёркивания
+  &:has(> img, > svg)::after {
+    display: none;
+  }
+}
+
+// ---------- Списки ----------
+
+ul, ol {
+  margin: 0 0 16px;
+  padding-left: 24px;
+}
+
+li {
+  margin-bottom: 6px;
+
+  &:last-child { margin-bottom: 0; }
+  &::marker { color: var(--accent); }
+}
+
+// ---------- Медиа ----------
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+img { height: auto; }
+
+iframe {
+  max-width: 100%;
+  border: 0;
+}
+
+figure { margin: 0; }
+
+// ---------- Кнопки и формы ----------
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  color: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+    filter: saturate(0.6);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  min-width: 0;
+  padding: 13px 18px;
+  color: var(--text-strong);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-m);
+  backdrop-filter: blur(12px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transition: border-color 0.3s ease, background 0.3s ease, box-shadow 0.35s ease;
+
+  &:hover { background: var(--surface-hover); }
+
+  &:focus {
+    outline: none;
+    background: var(--surface-hover);
+    border-color: var(--border-strong);
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.18), 0 8px 24px rgba(79, 70, 229, 0.2);
+  }
+
+  &::placeholder {
+    color: var(--placeholder);
+    opacity: 1;
+  }
+
+  // Автозаполнение браузера не ломает тёмную тему
+  &:-webkit-autofill {
+    -webkit-text-fill-color: var(--text-strong);
+    box-shadow: inset 0 0 0 1000px var(--bg-soft);
+    transition: background-color 9999s ease-in-out 0s;
+  }
+}
+
+textarea { resize: vertical; }
+
+select option {
+  color: var(--text-strong);
+  background: var(--bg-soft);
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  accent-color: var(--accent-strong);
+}
+
+fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+// ---------- Таблицы ----------
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 1px solid var(--border);
+}
+
+td {
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+tbody tr {
+  transition: background 0.25s ease;
+
+  &:hover { background: rgba(99, 102, 241, 0.08); }
+}
+
+// ---------- Выделение и скроллбар ----------
+
+::selection {
+  color: #fff;
+  background: rgba(168, 85, 247, 0.65);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track { background: transparent; }
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #6366f1, #a855f7);
+  border: 2px solid var(--bg);
+  border-radius: 10px;
+
+  &:hover { background: linear-gradient(180deg, #818cf8, #c084fc); }
+}
+
+// ---------- Адаптив базы ----------
+
+@media (max-width: 640px) {
+  body {
+    padding: 12px;
+    font-size: 15px;
+
+    &::before,
+    &::after { filter: blur(60px); }
+  }
+
+  h1 { font-size: 32px; }
+  h2 { font-size: 27px; }
+  h3 { font-size: 23px; }
+  h4 { font-size: 20px; }
+}
+
+// ==========================================================================
+// 4. КАРТОЧКА ФОРМЫ (.ad-form)
+// ==========================================================================
+
+.ad-form {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  min-height: 750px;
+  margin: 40px auto;
+  padding: 48px 44px 40px;
+  overflow: hidden;
+  isolation: isolate;
+  background:
+          radial-gradient(circle at 100% 0%, rgba(168, 85, 247, 0.22), transparent 50%),
+          radial-gradient(circle at 0% 100%, rgba(56, 189, 248, 0.14), transparent 50%),
+          var(--bg-card);
+  border-radius: 32px;
+  backdrop-filter: blur(24px) saturate(160%);
+  box-shadow:
+          0 40px 90px rgba(0, 0, 0, 0.55),
+          0 0 70px rgba(99, 102, 241, 0.18),
+          inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  animation: form-rise 0.8s var(--ease) both;
+
+  // Вращающаяся неоновая рамка
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    padding: 1.5px;
+    border-radius: inherit;
+    pointer-events: none;
+    background: conic-gradient(
+            from var(--angle),
+            rgba(99, 102, 241, 0.05),
+            rgba(56, 189, 248, 0.95),
+            rgba(168, 85, 247, 0.95),
+            rgba(236, 72, 153, 0.7),
+            rgba(99, 102, 241, 0.05) 65%
+    );
+    animation: border-spin 7s linear infinite;
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  }
+
+  // Световая линия сверху
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 15%;
+    width: 70%;
+    height: 1px;
+    pointer-events: none;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+  }
+
+  &__head {
+    margin-bottom: 38px;
+    text-align: center;
+  }
+
+  &__badge {
+    display: inline-block;
+    margin-bottom: 18px;
+    padding: 7px 16px;
+    color: #e9d5ff;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(192, 132, 252, 0.8);
+    background: rgba(168, 85, 247, 0.14);
+    border: 1px solid rgba(192, 132, 252, 0.45);
+    border-radius: 999px;
+    box-shadow: 0 0 18px rgba(168, 85, 247, 0.25), inset 0 0 12px rgba(168, 85, 247, 0.15);
+  }
+
+  &__title {
+    margin: 0 0 10px;
+    font-size: 34px;
+    font-weight: 800;
+    line-height: 1.15;
+    @include gradient-text(linear-gradient(100deg, #fff 10%, #c7d2fe 45%, #f0abfc 80%));
+    filter: drop-shadow(0 0 16px rgba(168, 85, 247, 0.5));
+  }
+
+  &__subtitle {
+    margin: 0;
+    font-size: 15px;
+    color: var(--muted-2);
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 34px;
+  }
+
+  &__actions {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 14px;
+
+    .btn {
+      min-height: 56px;
+      font-size: 15px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    margin: 16px auto;
+    padding: 34px 20px 26px;
+    border-radius: 26px;
+
+    &__title { font-size: 26px; }
+    &__actions { grid-template-columns: 1fr; }
+  }
+}
+
+// ==========================================================================
+// 5. СЕКЦИИ ФОРМЫ
+// ==========================================================================
+
+
+
+.ad-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px 18px;
+
+  .field--full { grid-column: 1 / -1; }
+
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ad-caption {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--muted-2);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.ad-hint {
+  margin: 12px 4px 0;
+  color: var(--hint);
+  font-size: 13px;
+}
+
+// ==========================================================================
+// 6. ТОСТЫ
+// ==========================================================================
+
+.toast-wrapper {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: min(420px, calc(100vw - 32px));
+  pointer-events: none;
+
+  @media (max-width: 480px) {
+    top: 12px;
+    right: 16px;
+    left: 16px;
+    width: auto;
+  }
+}
+
+.toast {
+  // По умолчанию — ошибка; модификаторы ниже меняют только цвет и иконку
+  --toast-color: #fb7185;
+  --toast-rgb: 251, 113, 133;
+  --toast-duration: 5s;
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 16px 20px 18px;
+  overflow: hidden;
+  isolation: isolate;
+  color: var(--text);
+  font: 600 14px/1.55 Inter, "Segoe UI", sans-serif;
+  letter-spacing: -0.01em;
+  background:
+          radial-gradient(circle at 0% 50%, rgba(var(--toast-rgb), 0.22), transparent 60%),
+          var(--bg-card);
+  border: 1px solid rgba(var(--toast-rgb), 0.35);
+  border-radius: 18px;
+  backdrop-filter: blur(18px) saturate(160%);
+  box-shadow:
+          0 18px 40px rgba(0, 0, 0, 0.45),
+          0 0 28px rgba(var(--toast-rgb), 0.22),
+          inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  pointer-events: auto;
+  animation: toast-in 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  transition: transform 0.3s var(--ease), box-shadow 0.35s ease, border-color 0.3s ease;
+
+  // Модификаторы
+  &--success {
+    --toast-color: #34d399;
+    --toast-rgb: 52, 211, 153;
+
+    &::before { content: "✓"; }
+  }
+
+  // Иконка
+  &::before {
+    content: "!";
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    color: var(--toast-color);
+    font-size: 18px;
+    font-weight: 800;
+    text-shadow: 0 0 10px rgba(var(--toast-rgb), 0.9);
+    background: rgba(var(--toast-rgb), 0.15);
+    border: 1px solid rgba(var(--toast-rgb), 0.5);
+    border-radius: 50%;
+    animation:
+            toast-icon-pop 0.6s cubic-bezier(0.34, 1.5, 0.64, 1) 0.15s both,
+            toast-icon-pulse 2.4s ease-in-out 0.8s infinite;
+  }
+
+  // Полоска таймера
+  &::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0;
+    z-index: -1;
+    height: 3px;
+    background: linear-gradient(90deg, rgba(var(--toast-rgb), 0.2), var(--toast-color));
+    box-shadow: 0 0 12px rgba(var(--toast-rgb), 0.9);
+    transform-origin: left center;
+    animation: toast-progress var(--toast-duration) linear forwards;
+  }
+
+  span {
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .close {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    color: var(--muted-2);
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 1;
+    background: var(--surface);
+    border: 1px solid rgba(165, 180, 252, 0.18);
+    border-radius: 10px;
+    transition:
+            color 0.25s ease,
+            background 0.25s ease,
+            border-color 0.25s ease,
+            box-shadow 0.3s ease,
+            transform 0.35s cubic-bezier(0.34, 1.5, 0.64, 1);
+
+    &:hover {
+      color: #fff;
+      background: rgba(var(--toast-rgb), 0.25);
+      border-color: rgba(var(--toast-rgb), 0.7);
+      box-shadow: 0 0 16px rgba(var(--toast-rgb), 0.55);
+      transform: rotate(90deg);
+    }
+
+    &:active { transform: rotate(90deg) scale(0.88); }
+    &:focus-visible { outline-color: var(--toast-color); }
+  }
+
+  // Наведение: тост сдвигается, таймер на паузе
+  &:hover {
+    transform: translateX(-6px);
+    border-color: rgba(var(--toast-rgb), 0.65);
+    box-shadow:
+            0 22px 48px rgba(0, 0, 0, 0.5),
+            0 0 40px rgba(var(--toast-rgb), 0.38),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+    &::after { animation-play-state: paused; }
+  }
+
+  // Закрытие: добавь класс перед удалением из DOM
+  &--leaving {
+    animation: toast-out 0.35s cubic-bezier(0.4, 0, 1, 1) forwards;
+    pointer-events: none;
+  }
+}
+
+// ==========================================================================
+// 7. KEYFRAMES
+// ==========================================================================
+
+@keyframes bg-drift {
+  50% { transform: translate3d(var(--dx), var(--dy), 0) scale(1.12); }
+}
+
+@keyframes border-spin {
+  to { --angle: 360deg; }
+}
+
+@keyframes form-rise {
+  from { opacity: 0; transform: translateY(36px) scale(0.97); filter: blur(8px); }
+}
+
+@keyframes section-in {
+  from { opacity: 0; transform: translateY(18px); }
+}
+
+@keyframes num-pulse {
+  0%, 100% { box-shadow: 0 0 10px rgba(168, 85, 247, 0.6), 0 0 22px rgba(99, 102, 241, 0.35); }
+  50%      { box-shadow: 0 0 16px rgba(192, 132, 252, 0.95), 0 0 34px rgba(99, 102, 241, 0.6); }
+}
+
+@keyframes toast-in {
+  from { opacity: 0; transform: translateX(60px) scale(0.92); filter: blur(6px); }
+}
+
+@keyframes toast-out {
+  to { opacity: 0; transform: translateX(60px) scale(0.92); filter: blur(6px); }
+}
+
+@keyframes toast-progress {
+  to { transform: scaleX(0); }
+}
+
+@keyframes toast-icon-pop {
+  0%   { transform: scale(0) rotate(-40deg); }
+  60%  { transform: scale(1.2) rotate(8deg); }
+  100% { transform: scale(1) rotate(0); }
+}
+
+@keyframes toast-icon-pulse {
+  0%, 100% { box-shadow: 0 0 10px rgba(var(--toast-rgb), 0.5), 0 0 0 0 rgba(var(--toast-rgb), 0.45); }
+  50%      { box-shadow: 0 0 18px rgba(var(--toast-rgb), 0.85), 0 0 0 8px rgba(var(--toast-rgb), 0); }
+}
+
+// ==========================================================================
+// 8. REDUCED MOTION
+// ==========================================================================
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+// =========================
+// 9. КНОПКИ
+// =========================
+
+.btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 52px;
+  padding: 0 16px;
+  overflow: hidden;
+  isolation: isolate;
+
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  cursor: pointer;
+
+  border: 1px solid transparent;
+  border-radius: 16px;
+
+  transition:
+          transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+          box-shadow 0.35s ease,
+          border-color 0.3s ease,
+          color 0.3s ease;
+
+  &:active {
+    transform: scale(0.96);
+  }
+
+  // Основная неоновая кнопка
+  &--primary {
+    color: #fff;
+
+    background: linear-gradient(120deg, #6366f1, #a855f7, #ec4899, #6366f1);
+    background-size: 300% 100%;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+
+    animation:
+            btn-gradient 5s ease infinite,
+            neon-pulse 2.8s ease-in-out infinite;
+
+    // Блик
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+
+      background: linear-gradient(
+              110deg,
+              transparent 25%,
+              rgba(255, 255, 255, 0.45) 50%,
+              transparent 75%
+      );
+      transform: translateX(-130%) skewX(-15deg);
+      transition: transform 0.8s ease;
+    }
+
+    &:hover {
+      transform: translateY(-3px) scale(1.03);
+
+      &::before {
+        transform: translateX(130%) skewX(-15deg);
+      }
+    }
+  }
+
+  // Вторая кнопка — «стекло» с неоновой обводкой
+  &--ghost {
+    color: #c7d2fe;
+
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(165, 180, 252, 0.3);
+
+    box-shadow:
+            0 0 0 rgba(168, 85, 247, 0),
+            inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+
+      background: linear-gradient(
+              135deg,
+              rgba(56, 189, 248, 0.25),
+              rgba(99, 102, 241, 0.3),
+              rgba(168, 85, 247, 0.3)
+      );
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+
+    &:hover {
+      transform: translateY(-3px) scale(1.03);
+      color: #fff;
+      border-color: rgba(192, 132, 252, 0.8);
+      text-shadow: 0 0 10px rgba(192, 132, 252, 0.8);
+
+      box-shadow:
+              0 0 22px rgba(168, 85, 247, 0.4),
+              inset 0 0 14px rgba(99, 102, 241, 0.2);
+
+      &::before {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+
+// =========================
+// 10. МОДАЛКА
+// =========================
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  overflow-y: auto;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+
+  // Затемнение с размытием
+  &__backdrop {
+    position: fixed;
+    inset: 0;
+
+    background:
+            radial-gradient(circle at 30% 20%, rgba(99, 102, 241, 0.25), transparent 50%),
+            radial-gradient(circle at 75% 80%, rgba(168, 85, 247, 0.22), transparent 50%),
+            rgba(5, 7, 18, 0.78);
+    backdrop-filter: blur(10px);
+  }
+
+  // Окно
+  &__window {
+    --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+    position: relative;
+    width: 100%;
+    max-width: 440px;
+    padding: 40px 36px 36px;
+    overflow: hidden;
+    isolation: isolate;
+
+    background:
+            radial-gradient(circle at 100% 0%, rgba(168, 85, 247, 0.22), transparent 55%),
+            radial-gradient(circle at 0% 100%, rgba(56, 189, 248, 0.14), transparent 55%),
+            rgba(14, 18, 40, 0.92);
+    border-radius: 28px;
+    backdrop-filter: blur(24px) saturate(160%);
+
+    box-shadow:
+            0 40px 90px rgba(0, 0, 0, 0.6),
+            0 0 60px rgba(99, 102, 241, 0.2),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1);
+
+    @media (max-width: 640px) {
+      .modal__window {
+        padding: 32px 22px 26px;
+        border-radius: 24px;
+      }
+    }
+    // Вращающаяся неоновая рамка
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      padding: 1.5px;
+      border-radius: inherit;
+      pointer-events: none;
+
+      background: conic-gradient(
+              from var(--angle),
+              rgba(99, 102, 241, 0.05),
+              rgba(56, 189, 248, 0.95),
+              rgba(168, 85, 247, 0.95),
+              rgba(236, 72, 153, 0.7),
+              rgba(99, 102, 241, 0.05) 65%
+      );
+      animation: border-spin 6s linear infinite;
+
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+    }
+
+    // Световая линия сверху
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 15%;
+      width: 70%;
+      height: 1px;
+      pointer-events: none;
+
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.7), transparent);
+    }
+  }
+
+  // Показ модалки
+  &.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+
+    .modal__backdrop {
+      animation: modal-backdrop-in 0.4s ease both;
+    }
+
+    .modal__window {
+      animation: modal-window-in 0.6s var(--ease, cubic-bezier(0.2, 0.8, 0.2, 1)) both;
+    }
+  }
+}
