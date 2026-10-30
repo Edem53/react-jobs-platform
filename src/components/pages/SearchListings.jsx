@@ -54,19 +54,17 @@ export function SearchListings() {
                         <select
                             className="field__input field__select"
                             id="find-sort"
-                            defaultValue="new"
-                            required
-                            value={queryParams._sort}
+                            value={`${queryParams._sort || "id"}|${queryParams._order || "desc"}`}
                             onChange={(e) => {
-                                console.log(e);
-                                handleChangeSorting(e.target.value, e.target.options[e.target.selectedIndex].dataset.order)
+                                const [sortField, order] = e.target.value.split("|");
+                                handleChangeSorting(sortField, order);
                             }}
                         >
-                            <option value="id" data-order="desc">Сначала новые</option>
-                            <option value="id" data-order="asc">Сначала старые</option>
-                            <option value="salary_to" data-order="desc">Оплата: по убыванию</option>
-                            <option value="salary_to" data-order="asc">Оплата: по возрастанию</option>
-                            <option value="title" data-order="asc">По названию (А–Я)</option>
+                            <option value="id|desc">Сначала новые</option>
+                            <option value="id|asc">Сначала старые</option>
+                            <option value="salary_to|desc">Оплата: по убыванию</option>
+                            <option value="salary_to|asc">Оплата: по возрастанию</option>
+                            <option value="title|asc">По названию (А–Я)</option>
                         </select>
                         <label className="field__label" htmlFor="find-sort">Сортировка</label>
                     </div>
