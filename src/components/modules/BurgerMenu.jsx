@@ -9,15 +9,21 @@ export function BurgerMenu() {
             </div>
             <div className="burger-menu__menu">
                 <ul>
-                    <li>
-                        <Link to={"/"}>Home</Link>
-                    </li>
-                    <li>
-                        <Link to={"/information"}>Info</Link>
-                    </li>
-                    <li>
-                        <Link to={"/contacts"}>Contact</Link>
-                    </li>
+                    <Link to={"/"}>
+                        <span>
+                            Home
+                        </span>
+                    </Link>
+                    <Link to={"/information"}>
+                        <span>
+                            Info
+                        </span>
+                    </Link>
+                    <Link to={"/contacts"}>
+                        <span>
+                            Contact
+                        </span>
+                    </Link>
                 </ul>
             </div>
         </div>

@@ -73,6 +73,7 @@ export function Reviews() {
             toast.error("Ошибка отправки. Проверьте соединение и попробуйте ещё раз.");
         } finally {
             setIsSubmitting(false);
+            setAnonymous(!anonymous);
         }
     }
 
@@ -263,8 +264,17 @@ export function Reviews() {
                 </div>
 
                 <div className="ad-form__actions">
-                    <button className="btn btn--primary" type="submit">
-                        <span>Опубликовать отзыв</span>
+                    <button className="btn btn--primary" type="submit" disabled={isSubmitting}>
+                        <span>
+                            {isSubmitting ? (
+                                <>
+                                    <span className="form-spinner" />
+                                    Отправляем...
+                                </>
+                            ) : (
+                                "Опубликовать"
+                            )}
+                        </span>
                     </button>
                     <button className="btn btn--ghost" type="reset">
                         <span>Очистить</span>

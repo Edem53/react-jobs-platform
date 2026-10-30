@@ -5,7 +5,11 @@
   // =========================
   // АККАУНТ
   // =========================
-
+  .account {
+    &:after {
+      display: none !important;
+    }
+  }
   .account,
   .login {
     position: relative;
@@ -143,6 +147,21 @@
 
     &:active {
       transform: translateY(-1px) scale(0.97);
+    }
+
+    @media (max-width: 1200px) {
+        font-size: 15px;
+        width: auto;
+    }
+    @media (max-width: 580px) {
+        padding-right: 10px;
+        .icon {
+          width: 40px;
+          height: 40px;
+        }
+        span {
+          display: none;
+        }
     }
   }
 }

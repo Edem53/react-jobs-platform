@@ -200,6 +200,22 @@
       "userId": "6",
       "agree": true,
       "id": 15
+    },
+    {
+      "rating": "3",
+      "title": "Можно и лучше",
+      "text": "не береженный а в целом пойдёт",
+      "adTitle": "Контент-менеджер сайта",
+      "tags": [
+        "talk"
+      ],
+      "recommend": true,
+      "anonymous": true,
+      "name": null,
+      "lastName": null,
+      "userId": "9",
+      "agree": true,
+      "id": 16
     }
   ],
   "users": [
@@ -263,13 +279,13 @@
       "birth": "2001-07-31",
       "city": "Фергана",
       "gender": "male",
-      "phone": "+998905605363",
+      "phone": "+998905635353",
       "telegram": "@kuznetsov",
       "sphere": "it",
       "about": "",
       "notifyEmail": true,
       "notifyNews": false,
-      "email": "kuznetsovem@gmail.com"
+      "email": "kuznetsov@gmail.com"
     },
     {
       "id": "6",

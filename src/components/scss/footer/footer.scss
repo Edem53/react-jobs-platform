@@ -129,7 +129,12 @@
             transparent
     ) 1;
   }
-
+  &__nav {
+      @media (max-width: 560px) {
+        display: none;
+      }  
+  }
+  
   // ---------- Бренд ----------
 
   &__brand {

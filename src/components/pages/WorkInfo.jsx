@@ -84,14 +84,14 @@ export function WorkInfo() {
             <div className="ad-section">
                 <StepTitle step={"03"} title={"Контакты автора"} />
 
-                <Link to={`/profiles/${details.userId}`} className="job-author">
+                <div className="job-author">
                     <div className="job-author__avatar">{details.contact_name.split(" ")
                         .map((word) => word[0])
                         .join("")
                         .toUpperCase()}</div>
 
                     <div className="job-author__info">
-                        <h4 className="job-author__name">{details.contact_name}</h4>
+                        <Link to={`/profiles/${details.userId}`} className="job-author__name">{details.contact_name}</Link>
                         <span className="job-author__role">Автор объявления</span>
 
                         <div className="job-author__links">
@@ -112,7 +112,7 @@ export function WorkInfo() {
                             </a>
                         </div>
                     </div>
-                </Link>
+                </div>
             </div>
 
             <div className="ad-form__actions">

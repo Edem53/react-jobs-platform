@@ -136,7 +136,6 @@ h1, h2, h3, h4, h5, h6 {
   letter-spacing: -0.025em;
   color: var(--text-strong);
 }
-
 h1 {
   font-size: 42px;
   @include gradient-text(linear-gradient(100deg, #fff 10%, #c7d2fe 45%, #e9d5ff 75%, #fff));
@@ -549,7 +548,6 @@ tbody tr {
   &__body {
     display: flex;
     flex-direction: column;
-    gap: 34px;
   }
 
   &__actions {

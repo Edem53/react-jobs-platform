@@ -179,14 +179,15 @@ export function FindFreelancer() {
                                    autoComplete="email"/>
                             <label className="field__label" htmlFor="ad-email">Email (необязательно)</label>
                         </div>
+                        <label className="check">
+                            <input type="checkbox" name="agree" required/>
+                            <span className="check__box"></span>
+                            <span className="check__text">Я согласен с правилами размещения объявлений</span>
+                        </label>
                     </div>
                 </div>
 
-                <label className="check">
-                    <input type="checkbox" name="agree" required/>
-                    <span className="check__box"></span>
-                    <span className="check__text">Я согласен с правилами размещения объявлений</span>
-                </label>
+
 
                 <div className="ad-form__actions">
                     <button className="btn btn--primary" type="submit" disabled={isSubmitting}>
