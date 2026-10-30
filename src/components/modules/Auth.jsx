@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useAuthModal } from "../auth-modal-context/index.jsx";
 import { useProfile } from "../profile-context/index.jsx";
 import "../scss/form/form.scss";
+import {toast} from "../../utils/toast/index.js";
 
 export function Auth() {
     const [activeForm, setActiveForm] = useState("login");
@@ -28,7 +29,7 @@ export function Auth() {
             const data = await response.json();
 
             if (!response.ok) {
-                console.error(data);
+                toast.error("Неверный email или пароль");
                 return;
             }
 
@@ -37,15 +38,16 @@ export function Auth() {
             await fetchProfile(data.user.id);
 
             modal.closeModal();
+            toast.success("Авторизация прошла успешна!");
         } catch (error) {
-            console.error("Ошибка авторизации:", error);
+            toast.error("Ошибка авторизации:", error);
         }
     }
 
 
     function handleRegister(e) {
         e.preventDefault();
-        let userData = {}
+        let userData = {};
         if ( e.currentTarget.elements.password.value === e.currentTarget.elements.password_repeat.value ) {
             const email = e.currentTarget.elements.email.value;
             const password = e.currentTarget.elements.password.value;
@@ -77,11 +79,14 @@ export function Auth() {
         }).then((obj) => {
 
             if ( obj.ok ) {
-                console.log("Регистрация успешна");
+                toast.success("Регистрация успешна");
+
                 localStorage.setItem("token", obj.data.accessToken);
+
                 setActiveForm("login");
             } else {
                 console.log(obj.data);
+                toast.error("Ошибка регистрации!");
             }
         });
     }

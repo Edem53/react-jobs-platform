@@ -61,14 +61,14 @@ export function Reviews() {
             });
 
             if (!response.ok) {
-                throw new Error("Не удалось опубликовать объявление");
+                throw new Error("Не удалось опубликовать отзыв");
             }
 
             await response.json();
 
             form.reset();
 
-            toast.success("Объявление опубликовано! Спасибо.");
+            toast.success("Отзыв опубликован! Спасибо.");
         } catch (error) {
             toast.error("Ошибка отправки. Проверьте соединение и попробуйте ещё раз.");
         } finally {

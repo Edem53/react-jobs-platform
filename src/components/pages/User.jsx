@@ -69,6 +69,30 @@ function User() {
         try {
             const data = await api.updateProfile(obj);
             setProfile(data);
+
+            const fullName = `${data.firstName} ${data.lastName}`;
+
+            const response = await fetch(
+                `http://localhost:3001/ads?userId=${profile.userId}`
+            );
+
+            const userAds = await response.json();
+
+            await Promise.all(
+                userAds.map((ad) =>
+                    fetch(`http://localhost:3001/ads/${ad.id}`, {
+                        method: "PATCH",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            contact_name: fullName,
+                            phone: data.phone,
+                            email: data.email,
+                        }),
+                    })
+                )
+            );
             toast.success("Изменения успешно сохранены!");
         } catch (error) {
             console.error(error);

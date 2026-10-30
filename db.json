@@ -274,18 +274,18 @@
     {
       "id": "5",
       "userId": "5",
-      "firstName": "Эдем",
-      "lastName": "Кузнецов",
-      "birth": "2001-07-31",
-      "city": "Фергана",
+      "firstName": "Акрам",
+      "lastName": "Хокимов",
+      "birth": "2000-06-06",
+      "city": "Ташкент",
       "gender": "male",
       "phone": "+998905635353",
-      "telegram": "@kuznetsov",
+      "telegram": "@hokimov",
       "sphere": "it",
-      "about": "",
+      "about": "Меня зовут Акрам, я работаю в сфере IT и занимаюсь разработкой сайтов. Интересуюсь современными веб-технологиями, постоянно развиваюсь и совершенствую свои навыки.\n\nБуду рад познакомиться с единомышленниками, найти коллег для общения, обмена опытом и, возможно, совместной работы над интересными проектами.\n\nОткрыт к новым знакомствам и сотрудничеству!",
       "notifyEmail": true,
       "notifyNews": false,
-      "email": "kuznetsov@gmail.com"
+      "email": "hokimov@gmail.com"
     },
     {
       "id": "6",
@@ -483,9 +483,9 @@
       "salary_to": "15000",
       "urgent": true,
       "date": "2026-10-26",
-      "contact_name": "Кузнецов Эдем",
-      "phone": "+998905605363",
-      "email": "kuznetsovedem@gmail.com",
+      "contact_name": "Акрам Хокимов",
+      "phone": "+998905635353",
+      "email": "hokimov@gmail.com",
       "agree": true
     },
     {
@@ -500,9 +500,9 @@
       "salary_to": "25000",
       "urgent": true,
       "date": "2026-10-10",
-      "contact_name": "Кузнецов Эдем",
-      "phone": "+998905605363",
-      "email": "kuznetsovedem@gmail.com",
+      "contact_name": "Акрам Хокимов",
+      "phone": "+998905635353",
+      "email": "hokimov@gmail.com",
       "agree": true
     },
     {
@@ -517,9 +517,9 @@
       "salary_to": "100000",
       "urgent": false,
       "date": "2026-10-27",
-      "contact_name": "Кузнецов Эдем",
-      "phone": "+998905605363",
-      "email": "kuznetsovedem@gmail.com",
+      "contact_name": "Акрам Хокимов",
+      "phone": "+998905635353",
+      "email": "hokimov@gmail.com",
       "agree": true
     },
     {
@@ -534,9 +534,9 @@
       "salary_to": "500000",
       "urgent": true,
       "date": "2026-10-24",
-      "contact_name": "Кузнецов Эдем",
-      "phone": "+998905605363",
-      "email": "kuznetsovedem@gmail.com",
+      "contact_name": "Акрам Хокимов",
+      "phone": "+998905635353",
+      "email": "hokimov@gmail.com",
       "agree": true
     },
     {
@@ -551,9 +551,9 @@
       "salary_to": "20000",
       "urgent": true,
       "date": "2026-10-30",
-      "contact_name": "Кузнецов Эдем",
-      "phone": "+998905605363",
-      "email": "kuznetsovedem@gmail.com",
+      "contact_name": "Акрам Хокимов",
+      "phone": "+998905635353",
+      "email": "hokimov@gmail.com",
       "agree": true
     }
   ]
