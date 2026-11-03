@@ -1,13 +1,33 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>vite-project</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- Масштаб и безопасные зоны (чёлка, жест "домой") -->
+  <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  />
+
+  <!-- Цвет адресной строки Safari/Chrome и тёмная схема -->
+  <meta name="theme-color" content="#0b0b1a" />
+  <meta name="color-scheme" content="dark" />
+
+  <!-- Режим «на экран Домой» -->
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Vite Project" />
+
+  <!-- Не превращать цифры в ссылки-телефоны -->
+  <meta name="format-detection" content="telephone=no" />
+
+  <meta name="description" content="Описание сайта" />
+  <title>vite-project</title>
+</head>
+<body>
+<div id="root"></div>
+<script type="module" src="/src/main.jsx"></script>
+</body>
 </html>

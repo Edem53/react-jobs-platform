@@ -78,14 +78,33 @@ html {
   background-color: var(--bg);
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  color-scheme: dark;
+
+  // Аврора-пятна выходят за экран, режем горизонтальный скролл
+  overflow-x: hidden; // запасной вариант для старых Safari
+  overflow-x: clip;
 }
 
 body {
   position: relative;
   min-width: 320px;
   min-height: 100vh;
+  min-height: 100dvh; // iOS: не прыгает из-за адресной строки
   margin: 0;
   padding: 20px;
+
+  // Отступы под чёлку и жест «домой»
+  padding-top: max(20px, env(safe-area-inset-top));
+  padding-right: max(20px, env(safe-area-inset-right));
+  padding-bottom: max(20px, env(safe-area-inset-bottom));
+  padding-left: max(20px, env(safe-area-inset-left));
+
+  overflow-x: hidden;
+  overflow-x: clip;
+  touch-action: manipulation; // без зума двойным тапом
+  -webkit-tap-highlight-color: transparent;
+
   font: 400 16px/1.6 "Montserrat", Inter, "Segoe UI", Arial, sans-serif;
   color: var(--text);
   -webkit-font-smoothing: antialiased;
@@ -124,6 +143,25 @@ body {
     height: 60vw;
     background: radial-gradient(circle, rgba(168, 85, 247, 0.26), transparent 65%);
     animation-delay: -10s;
+  }
+}
+
+// Главный фикс: iOS зумит страницу при фокусе на поле меньше 16px
+input,
+textarea,
+select {
+  font-size: 16px;
+}
+
+// Меньше анимаций для тех, у кого они отключены в системе
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  body::before,
+  body::after {
+    animation: none;
   }
 }
 
