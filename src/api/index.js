@@ -1,9 +1,11 @@
+export const API_URL = "https://react-jobs-platform.onrender.com";
+
 export const api = {
     getTasks: async (queryParams) => {
         const searchParams = new URLSearchParams(queryParams);
 
         try {
-            const response = await fetch(`http://localhost:3001/ads?${searchParams.toString()}`);
+            const response = await fetch(`${API_URL}/ads?${searchParams.toString()}`);
 
             if (!response.ok) {
                 throw new Error("Ошибка при отправке объявления");
@@ -20,7 +22,7 @@ export const api = {
     updateProfile: async ({ id, ...payload }) => {
         const token = localStorage.getItem("token");
 
-        const response = await fetch(`http://localhost:3001/profiles/${id}`, {
+        const response = await fetch(`${API_URL}/profiles/${id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",

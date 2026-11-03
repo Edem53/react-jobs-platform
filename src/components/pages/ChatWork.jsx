@@ -2,6 +2,7 @@ import { Header } from "../modules/Header.jsx";
 import {Link, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {Chat} from "../modules/Chat.jsx";
+import {API_URL} from "../../api/index.js";
 
 export function ChatWork() {
     const params = useParams();
@@ -9,8 +10,8 @@ export function ChatWork() {
     const [details, setDetails] = useState(null);
     useEffect(() => {
         (async () => {
-            const response = await fetch(`http://localhost:3001/profiles?userId=${params.userId}`);
-            const responseTask = await fetch(`http://localhost:3001/ads?id=${params.id}`);
+            const response = await fetch(`${API_URL}/profiles?userId=${params.userId}`);
+            const responseTask = await fetch(`${API_URL}/ads?id=${params.id}`);
 
             if (!response.ok || !responseTask.ok) {
                 return;

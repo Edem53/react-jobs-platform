@@ -10,6 +10,7 @@ import {ProfileCard} from "../modules/ProfileCard.jsx";
 
 import "../scss/pages/user/user.scss";
 import "../scss/pages/profiles/profiles.scss";
+import {API_URL} from "../../api/index.js";
 
 export function Profiles() {
     const params = useParams();
@@ -18,9 +19,11 @@ export function Profiles() {
     const [details, setDetails] = useState(null);
     useEffect(() => {
         (async () => {
-            const response = await fetch(`http://localhost:3001/profiles?userId=${params.id}`);
-            const responseTask = await fetch(`http://localhost:3001/ads?userId=${params.id}`);
-            const responseReviews = await fetch(`http://localhost:3001/comments?userId=${params.id}`);
+            const response = await fetch(`${API_URL}/profiles?userId=${params.id}`);
+
+            const responseTask = await fetch(`${API_URL}/ads?userId=${params.id}`);
+
+            const responseReviews = await fetch(`${API_URL}/comments?userId=${params.id}`);
             if (!response.ok || !responseTask.ok || !responseReviews.ok) {
                 return;
             }

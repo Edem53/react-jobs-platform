@@ -6,6 +6,7 @@ import {toast} from "../../utils/toast/index.js";
 import {StepTitle} from "../modules/StepTitle.jsx";
 
 import "../scss/pages/reviews/reviews.scss";
+import {API_URL} from "../../api/index.js";
 
 export function Reviews() {
     const params = useParams();
@@ -16,8 +17,8 @@ export function Reviews() {
     const { profile } = useProfile();
     useEffect(() => {
         (async () => {
-            const response = await fetch(`http://localhost:3001/profiles?userId=${params.id}`);
-            const responseTask = await fetch(`http://localhost:3001/ads?userId=${params.id}`);
+            const response = await fetch(`${API_URL}/profiles?userId=${params.id}`);
+            const responseTask = await fetch(`${API_URL}/ads?userId=${params.id}`);
 
             if (!response.ok || !responseTask.ok) {
                 return;
@@ -52,7 +53,7 @@ export function Reviews() {
         };
 
         try {
-            const response = await fetch("http://localhost:3001/comments", {
+            const response = await fetch(`${API_URL}/comments`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

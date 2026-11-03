@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from "react";
+import {API_URL} from "../../api/index.js";
 
 const profileContext = createContext({});
 
@@ -15,7 +16,7 @@ export const ProfileContextProvider = ({ children }) => {
 
         try {
             const response = await fetch(
-                `http://localhost:3001/profiles?userId=${userId}`,
+                `${API_URL}/profiles?userId=${userId}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,

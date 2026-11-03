@@ -5,13 +5,14 @@ import {StepTitle} from "../modules/StepTitle.jsx";
 
 import "../scss/module/steptitle.scss";
 import "../scss/pages/workinfo/workinfo.scss";
+import {API_URL} from "../../api/index.js";
 
 export function WorkInfo() {
     const params = useParams();
     const [details, setDetails] = useState(null);
     useEffect(() => {
         (async () => {
-            const response = await fetch(`http://localhost:3001/ads/${params.id}`);
+            const response = await fetch(`${API_URL}/ads/${params.id}`);
             if (!response.ok) {
                 return;
             }

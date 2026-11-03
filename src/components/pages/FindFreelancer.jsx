@@ -3,6 +3,7 @@ import { Header } from "../modules/Header.jsx";
 import { toast } from "../../utils/toast/index.js";
 import "../scss/form/form.scss";
 import {StepTitle} from "../modules/StepTitle.jsx";
+import {API_URL} from "../../api/index.js";
 
 export function FindFreelancer() {
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -35,7 +36,7 @@ export function FindFreelancer() {
         };
 
         try {
-            const response = await fetch("http://localhost:3001/ads", {
+            const response = await fetch(`${API_URL}/ads`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

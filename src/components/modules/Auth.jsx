@@ -4,6 +4,7 @@ import { useAuthModal } from "../auth-modal-context/index.jsx";
 import { useProfile } from "../profile-context/index.jsx";
 import "../scss/form/form.scss";
 import {toast} from "../../utils/toast/index.js";
+import {API_URL} from "../../api/index.js";
 
 export function Auth() {
     const [activeForm, setActiveForm] = useState("login");
@@ -18,7 +19,7 @@ export function Auth() {
         const password = e.currentTarget.elements.password.value;
 
         try {
-            const response = await fetch("http://localhost:3001/login", {
+            const response = await fetch(`${API_URL}/login`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -60,7 +61,7 @@ export function Auth() {
             return;
         }
 
-        fetch("http://localhost:3001/register", {
+        fetch(`${API_URL}/register`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json; charset=UTF-8",

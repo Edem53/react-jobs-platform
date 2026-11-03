@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import { useLogout } from "../useLogout.js";
 import { useProfile } from "./../profile-context/index.jsx";
 
-import {api} from "../../api/index.js";
+import {api, API_URL} from "../../api/index.js";
 import {toast} from "../../utils/toast/index.js";
 
 import {StepTitle} from "../modules/StepTitle.jsx";
@@ -73,14 +73,14 @@ function User() {
             const fullName = `${data.firstName} ${data.lastName}`;
 
             const response = await fetch(
-                `http://localhost:3001/ads?userId=${profile.userId}`
+                `${API_URL}/ads?userId=${profile.userId}`
             );
 
             const userAds = await response.json();
 
             await Promise.all(
                 userAds.map((ad) =>
-                    fetch(`http://localhost:3001/ads/${ad.id}`, {
+                    fetch(`${API_URL}/ads/${ad.id}`, {
                         method: "PATCH",
                         headers: {
                             "Content-Type": "application/json",
@@ -105,8 +105,8 @@ function User() {
 
     useEffect(() => {
         (async () => {
-            const responseTask = await fetch(`http://localhost:3001/ads?userId=${profile.userId}`);
-            const responseReviews = await fetch(`http://localhost:3001/comments?userId=${profile.userId}`);
+            const responseTask = await fetch(`${API_URL}/ads?userId=${profile.userId}`);
+            const responseReviews = await fetch(`${API_URL}/comments?userId=${profile.userId}`);
             if (!responseTask.ok || !responseReviews.ok) {
                 return;
             }

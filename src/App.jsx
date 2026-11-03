@@ -22,6 +22,7 @@ import {ChatUser} from "./components/pages/ChatUser.jsx";
 import {ChatWork} from "./components/pages/ChatWork.jsx";
 import {Reviews} from "./components/pages/Reviews.jsx";
 import {Header} from "./components/Header.jsx";
+import {API_URL} from "./api/index.js";
 
 function App() {
     const profile = useProfile();
@@ -32,7 +33,7 @@ function App() {
 
         if (!token) return;
 
-        fetch("http://localhost:3001/profiles/5", {
+        fetch(`${API_URL}/profiles/5`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
