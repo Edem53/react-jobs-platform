@@ -9,11 +9,12 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "fake-json": "json-server ./src/assets/db.json --watch --port 3001",
-    "server": "json-server db.json --port 3001 -m ./node_modules/json-server-auth -r routes.json"
+    "server": "json-server db.json --host 0.0.0.0 --port $PORT -m ./node_modules/json-server-auth -r routes.json"
   },
   "dependencies": {
     "axios": "^1.19.0",
     "json-server": "^0.15.1",
+    "json-server-auth": "^2.1.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-router-dom": "^7.18.4"
@@ -27,7 +28,6 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.3",
     "globals": "^17.7.0",
-    "json-server-auth": "^2.1.0",
     "sass-embedded": "^1.106.1",
     "vite": "^8.2.0"
   }
