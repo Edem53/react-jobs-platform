@@ -60,11 +60,7 @@
       }
     }
 
-    // Выбранная звезда и все слева от неё
-    input:checked ~ label {
-      color: #fcd34d;
-      text-shadow: 0 0 16px rgba(252, 211, 77, 0.85), 0 0 30px rgba(245, 158, 11, 0.5);
-    }
+
 
     input:checked + label {
       animation: star-pop 0.5s cubic-bezier(0.34, 1.5, 0.64, 1);

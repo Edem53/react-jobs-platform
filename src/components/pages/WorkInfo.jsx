@@ -86,10 +86,11 @@ export function WorkInfo() {
                 <StepTitle step={"03"} title={"Контакты автора"} />
 
                 <div className="job-author">
-                    <div className="job-author__avatar">{details.contact_name.split(" ")
+                    <Link to={`/profiles/${details.userId}`} className="job-author__avatar">
+                        {details.contact_name.split(" ")
                         .map((word) => word[0])
                         .join("")
-                        .toUpperCase()}</div>
+                        .toUpperCase()}</Link>
 
                     <div className="job-author__info">
                         <Link to={`/profiles/${details.userId}`} className="job-author__name">{details.contact_name}</Link>
