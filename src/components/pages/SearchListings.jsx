@@ -10,6 +10,8 @@ import "../scss/find/find.scss";
 
 
 export function SearchListings() {
+
+
     const [ tasks, setTasks ] = useState([]);
 
     const { queryParams, clearQueryParams, updateQueryParams } = useQueryParams();

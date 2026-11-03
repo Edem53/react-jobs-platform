@@ -4,6 +4,7 @@ import {useEffect, useState} from "react";
 import { Chat } from "../modules/Chat.jsx";
 
 export function ChatUser() {
+
     const params = useParams();
     const [details, setDetails] = useState(null);
     useEffect(() => {
