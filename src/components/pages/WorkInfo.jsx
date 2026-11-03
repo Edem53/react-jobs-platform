@@ -84,37 +84,36 @@ export function WorkInfo() {
 
             <div className="ad-section">
                 <StepTitle step={"03"} title={"Контакты автора"} />
-
-                <div className="job-author">
-                    <Link to={`/profiles/${details.userId}`} className="job-author__avatar">
+                <Link to={`/profiles/${details.userId}`} className="job-author">
+                    <div className="job-author__avatar">
                         {details.contact_name.split(" ")
                         .map((word) => word[0])
                         .join("")
-                        .toUpperCase()}</Link>
+                        .toUpperCase()}</div>
 
                     <div className="job-author__info">
-                        <Link to={`/profiles/${details.userId}`} className="job-author__name">{details.contact_name}</Link>
+                        <div className="job-author__name">{details.contact_name}</div>
                         <span className="job-author__role">Автор объявления</span>
 
                         <div className="job-author__links">
-                            <a className="job-link" href={`tel:${details.phone}`}>
+                            <div className="job-link">
                                 <span className="job-link__icon">📞</span>
                                 <span className="job-link__text">
                                     <small>Телефон</small>
                                     <b>{details.phone}</b>
                                 </span>
-                            </a>
+                            </div>
 
-                            <a className="job-link" href={`mailto:${details.email}`}>
+                            <div className="job-link">
                                 <span className="job-link__icon">✉️</span>
                                 <span className="job-link__text">
                                     <small>Почта</small>
                                     <b>{details.email}</b>
                                 </span>
-                            </a>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </Link>
             </div>
 
             <div className="ad-form__actions">
